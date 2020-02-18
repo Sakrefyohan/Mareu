@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">Ma réu</string>
     <string name="Hello_World">Hello World!</string>
+
+    <!--String for the toolbar-->
+    <string name="toolbar_menu_filter">Filter</string>
+    <string name="toolbar_menu_button_filter_item1">Trier par ordre croissant</string>
+    <string name="toolbar_menu_button_filter_item2">Trier par ordre décroissant</string>
+    <string name="toolbar_menu_button_filter_item3">Trier par salle</string>
+    <string name="toolbar_menu_button_filter_item4">Trier par date</string>
+
 </resources>
