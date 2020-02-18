@@ -2,32 +2,33 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!-- "Mark Favorite", should appear as action button if possible -->
+    <!-- Filter the meeting with this button -->
     <item
         android:id="@+id/toolbar_menu_button_filter"
         android:icon="@drawable/ic_filter_list_black_24dp"
         android:title="@string/toolbar_menu_filter"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="ifRoom">
+        <menu>
+            <item
+                android:id="@+id/toolbar_menu_button_filter_item1"
+                android:title="@string/toolbar_menu_button_filter_item1"/>
 
-    <item
-        android:id="@+id/toolbar_menu_button_filter_item1"
-        android:title="@string/toolbar_menu_button_filter_item1"
-        app:showAsAction="never"/>
 
-    <item
-        android:id="@+id/toolbar_menu_button_filter_item2"
-        android:title="@string/toolbar_menu_button_filter_item2"
-        app:showAsAction="never"/>
+            <item
+                android:id="@+id/toolbar_menu_button_filter_item2"
+                android:title="@string/toolbar_menu_button_filter_item2"/>
 
-    <item
-        android:id="@+id/toolbar_menu_button_filter_item3"
-        android:title="@string/toolbar_menu_button_filter_item3"
-        app:showAsAction="never"/>
 
-    <item
-        android:id="@+id/toolbar_menu_button_filter_item4"
-        android:title="@string/toolbar_menu_button_filter_item4"
-        app:showAsAction="never"/>
+            <item
+                android:id="@+id/toolbar_menu_button_filter_item3"
+                android:title="@string/toolbar_menu_button_filter_item3"/>
 
+
+            <item
+                android:id="@+id/toolbar_menu_button_filter_item4"
+                android:title="@string/toolbar_menu_button_filter_item4"/>
+
+        </menu>
+    </item>
 
 </menu>
