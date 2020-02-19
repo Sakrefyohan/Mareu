@@ -1,6 +1,7 @@
 package sakref.yohan.mareu.ui.meeting_details;
 
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -11,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -36,10 +38,15 @@ public class DetailsListMeeting extends AppCompatActivity implements AdapterView
     @BindView(R.id.activity_meeting_details_date)
     EditText mDatePicker;
 
+    @BindView(R.id.activity_meeting_details_time)
+    EditText mTimePicker;
+
     @BindView(R.id.activity_meeting_details_spinner)
     Spinner mSpinner;
 
     final Calendar myCalendar = Calendar.getInstance();
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +63,28 @@ public class DetailsListMeeting extends AppCompatActivity implements AdapterView
         mSpinner.setAdapter(adapterSpinner);
         mSpinner.setOnItemSelectedListener(this);
 
+        /**
+         * Code for the time picker
+         */
+
+        mTimePicker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar mCurrentTime = Calendar.getInstance();
+                int hour = mCurrentTime.get(Calendar.HOUR_OF_DAY);
+                int minute = mCurrentTime.get(Calendar.MINUTE);
+
+                TimePickerDialog mTimePickerDialogue ;
+                mTimePickerDialogue = new TimePickerDialog(DetailsListMeeting.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                        mTimePicker.setText( selectedHour + ":" + selectedMinute);
+                    }
+                }, hour, minute, true);
+                mTimePickerDialogue.setTitle("Select Time");
+                mTimePickerDialogue.show();
+            }
+        });
 
 
         /**
