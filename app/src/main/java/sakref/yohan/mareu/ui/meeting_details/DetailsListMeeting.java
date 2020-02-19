@@ -30,7 +30,7 @@ import java.util.Locale;
 
 import sakref.yohan.mareu.R;
 
-public class DetailsListMeeting extends AppCompatActivity {//implements AdapterView.OnItemSelectedListener {
+public class DetailsListMeeting extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
 
     @BindView(R.id.activity_meeting_details_date)
@@ -50,12 +50,12 @@ public class DetailsListMeeting extends AppCompatActivity {//implements AdapterV
         /**
          * Code for the spinner
          * Here we fill the spinner with the list we have created on String
-*
-        *ArrayAdapter<CharSequence> adapterSpinner = ArrayAdapter.createFromResource(this, R.array.Room, android.R.layout.simple_spinner_item);
-        *adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        *mSpinner.setAdapter(adapterSpinner);
-        *mSpinner.setOnItemSelectedListener(this);
-        */
+*/
+        ArrayAdapter<CharSequence> adapterSpinner = ArrayAdapter.createFromResource(this, R.array.Room, android.R.layout.simple_spinner_item);
+        adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mSpinner.setAdapter(adapterSpinner);
+        mSpinner.setOnItemSelectedListener(this);
+
 
 
         /**
@@ -130,7 +130,7 @@ public class DetailsListMeeting extends AppCompatActivity {//implements AdapterV
 
     }
 
-/**
+
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         String text = parent.getItemAtPosition(position).toString();
@@ -141,5 +141,5 @@ public class DetailsListMeeting extends AppCompatActivity {//implements AdapterV
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
-*/
+
 }

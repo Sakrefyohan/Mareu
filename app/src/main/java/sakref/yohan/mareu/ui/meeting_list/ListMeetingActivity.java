@@ -25,8 +25,7 @@ import sakref.yohan.mareu.ui.meeting_details.DetailsListMeeting;
 
 public class ListMeetingActivity extends AppCompatActivity {
 
-    //@BindView(R.id.toolbar)
-    //Toolbar mToolbar;
+
 
     @BindView(R.id.activity_meeting_list_add_meeting)
     FloatingActionButton mFloatingActionButton;
