@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.os.Bundle;
@@ -18,15 +19,17 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import sakref.yohan.mareu.R;
+import sakref.yohan.mareu.ui.meeting_details.DetailsListMeeting;
 
 public class ListMeetingActivity extends AppCompatActivity {
 
     //@BindView(R.id.toolbar)
     //Toolbar mToolbar;
 
-    //@BindView(R.id.activity_meeting_list_add_meeting)
-    //FloatingActionButton mFloatingActionButton;
+    @BindView(R.id.activity_meeting_list_add_meeting)
+    FloatingActionButton mFloatingActionButton;
 
 
     @Override
@@ -34,10 +37,6 @@ public class ListMeetingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meeting_list);
         ButterKnife.bind(this);
-
-
-        //Toolbar mToolbar = findViewById(R.id.toolbar);
-        //setSupportActionBar(mToolbar);
 
 
     }
@@ -73,6 +72,12 @@ public class ListMeetingActivity extends AppCompatActivity {
 
         }
 
+
+    }
+    @OnClick(R.id.activity_meeting_list_add_meeting)
+    public void onShowDetails(){
+        Intent intent = new Intent(this, DetailsListMeeting.class);
+        startActivity(intent);
 
     }
 }

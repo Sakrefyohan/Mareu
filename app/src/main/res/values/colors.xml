@@ -3,4 +3,18 @@
     <color name="colorPrimary">#0092CC</color>
     <color name="colorPrimaryDark">#005AAD</color>
     <color name="colorAccent">#11A501</color>
+
+    <!--Room Color-->
+    <color name="colorRoomHydrogen">#FF2222</color>
+    <color name="colorRoomHelium">#FF6F22</color>
+    <color name="colorRoomLithium">#FFA722</color>
+    <color name="colorRoomBeryllium">#F0FF22</color>
+    <color name="colorRoomBoron">#BDFF22</color>
+    <color name="colorRoomCarbon">#52FF22</color>
+    <color name="colorRoomNitrogen">#22FF52</color>
+    <color name="colorRoomOxygen">#22FFE5</color>
+    <color name="colorRoomFluorine">#2285FF</color>
+    <color name="colorRoomNeon">#AA22FF</color>
+
+
 </resources>

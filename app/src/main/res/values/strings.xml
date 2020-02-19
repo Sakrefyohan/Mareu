@@ -9,4 +9,28 @@
     <string name="toolbar_menu_button_filter_item3">Trier par salle</string>
     <string name="toolbar_menu_button_filter_item4">Trier par date</string>
 
+    <!--String to fill the DetailsListMeeting activity-->
+   <string name="activity_meeting_details_activity">Nouvelle Réunion</string>
+   <string name="activity_meeting_details_subject">Sujet de la réunion</string>
+   <string name="activity_meeting_details_date">Date : 02/03/1998</string>
+   <string name="activity_meeting_details_time">Heure de la reunion</string>
+   <string name="activity_meeting_details_people">Liste des participants</string>
+
+    <!--String for fragment_meeting-->
+    <string name="fragment_meeting">Couleur de la reunion</string>
+
+
+    <!--String to fill the spinner-->
+    <string-array name="Room">
+        <item>Hydrogène</item>
+        <item>Helium</item>
+        <item>Beryllium</item>
+        <item>Bore</item>
+        <item>Carbonne</item>
+        <item>Azote</item>
+        <item>Oxygène</item>
+        <item>Fluor</item>
+        <item>Néon</item>
+    </string-array>
+
 </resources>
