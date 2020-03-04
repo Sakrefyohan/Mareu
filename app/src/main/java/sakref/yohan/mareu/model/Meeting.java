@@ -17,12 +17,12 @@ public class Meeting {
     private String time;
 
     /** Room of the meeting */
-    private String room;
+    private Room room;
 
     /**Participant of the meeting*/
     private String participants;
 
-    public Meeting(Integer id, String subject, String date, String time, String room, String participants){
+    public Meeting(Integer id, String subject, String date, String time, Room room, String participants){
         this.id = id;
         this.subject = subject;
         this.date = date;
@@ -63,11 +63,11 @@ public class Meeting {
         this.time = time;
     }
 
-    public String getRoom() {
+    public Room getRoom() {
         return room;
     }
 
-    public void setRoom(String room) {
+    public void setRoom(Room room) {
         this.room = room;
     }
 
