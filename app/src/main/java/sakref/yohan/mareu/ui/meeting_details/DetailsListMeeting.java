@@ -171,4 +171,6 @@ public class DetailsListMeeting extends AppCompatActivity implements AdapterView
 
     }
 
+
+
 }

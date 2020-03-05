@@ -3,6 +3,7 @@ package sakref.yohan.mareu.ui.meeting_list;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.AbsListView;
 import android.widget.TextView;
 import android.widget.Toast;
 //import android.widget.Toolbar;
@@ -29,6 +31,9 @@ public class ListMeetingActivity extends AppCompatActivity {
 
     @BindView(R.id.activity_meeting_list_add_meeting)
     FloatingActionButton mFloatingActionButton;
+
+    @BindView(R.id.activity_meeting_list_recyclerview)
+    RecyclerView mRecyclerView;
 
 
     @Override

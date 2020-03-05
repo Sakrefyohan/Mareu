@@ -73,13 +73,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/activity_meeting_details_people"
-            app:layout_constraintBottom_toTopOf="@id/chipGroup"
+            app:layout_constraintBottom_toTopOf="@id/activity_meeting_details_chipGroup"
             app:layout_constraintTop_toBottomOf="@+id/activity_meeting_details_time"
             app:layout_constraintVertical_weight="1" />
 
         <com.google.android.material.chip.ChipGroup
 
-            android:id="@+id/chipGroup"
+            android:id="@+id/activity_meeting_details_chipGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toTopOf="@+id/activity_meeting_details_spinner"
@@ -91,7 +91,7 @@
             android:layout_width="match_parent"
             android:layout_height="35dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/chipGroup"
+            app:layout_constraintTop_toBottomOf="@+id/activity_meeting_details_chipGroup"
             app:layout_constraintVertical_weight="1">
 
 
