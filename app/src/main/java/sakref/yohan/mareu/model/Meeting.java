@@ -2,6 +2,8 @@ package sakref.yohan.mareu.model;
 
 import android.graphics.Color;
 
+import java.util.List;
+
 public class Meeting {
 
     /** Identifier */
@@ -20,9 +22,9 @@ public class Meeting {
     private Room room;
 
     /**Participant of the meeting*/
-    private String participants;
+    private List<String> participants;
 
-    public Meeting(Integer id, String subject, String date, String time, Room room, String participants){
+    public Meeting(Integer id, String subject, String date, String time, Room room, List<String> participants){
         this.id = id;
         this.subject = subject;
         this.date = date;

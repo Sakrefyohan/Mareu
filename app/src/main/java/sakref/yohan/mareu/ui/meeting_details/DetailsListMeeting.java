@@ -2,6 +2,7 @@ package sakref.yohan.mareu.ui.meeting_details;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -9,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -19,6 +21,7 @@ import androidx.annotation.NonNull;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import sakref.yohan.mareu.R;
 
 import androidx.annotation.NonNull;
@@ -31,10 +34,12 @@ import java.util.Calendar;
 import java.util.Locale;
 
 import sakref.yohan.mareu.R;
+import sakref.yohan.mareu.model.Meeting;
 
 public class DetailsListMeeting extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
 
+    private static final String CREATE_REUNION = "0";
     @BindView(R.id.activity_meeting_details_date)
     EditText mDatePicker;
 
@@ -43,6 +48,9 @@ public class DetailsListMeeting extends AppCompatActivity implements AdapterView
 
     @BindView(R.id.activity_meeting_details_spinner)
     Spinner mSpinner;
+
+    //TODO: Finish to initialise all item
+    //TODO: Add check for email (check not empty)
 
     final Calendar myCalendar = Calendar.getInstance();
 
@@ -169,6 +177,15 @@ public class DetailsListMeeting extends AppCompatActivity implements AdapterView
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+
+    //TODO: Get all item from the activity
+    @OnClick(R.id.create_reunion_button)
+    public void onCreateReunion(){
+        Intent createReunion = new Intent();
+        Meeting meeting = new Meeting(0, mSubject.getText() ,"",mTimePicker.getText().toString(),"",mParticipants.getList,);
+        createReunion.putExtra(CREATE_REUNION,"")
+        //TODO: Create the meeting
     }
 
 
