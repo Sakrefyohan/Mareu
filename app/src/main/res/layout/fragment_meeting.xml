@@ -2,43 +2,90 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="100dp"
     android:orientation="vertical">
 
 
-    <ImageView
+    <!--TODO:Change Image to color -->
+
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/item_list_avatar"
-        android:contentDescription="@string/fragment_meeting"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
+        android:contentDescription="@string/fragment_meeting"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.533" />
 
     <TextView
-        android:id="@+id/item_list_name"
+        android:id="@+id/reunion_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="16dp"
+        android:text="Nom de la reunion"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/item_list_avatar"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/item_list_avatar"
-        app:layout_constraintTop_toTopOf="@+id/item_list_avatar" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.296" />
 
-        <!--TODO:Change Image to color -->
+    <TextView
+        android:id="@+id/reunion_participants"
+        android:layout_width="265dp"
+        android:layout_height="33dp"
+        android:text="Details de la reunion"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/item_list_delete_button"
+        app:layout_constraintHorizontal_bias="0.38"
+        app:layout_constraintStart_toEndOf="@+id/item_list_avatar"
+        app:layout_constraintTop_toBottomOf="@+id/reunion_name"
+        app:layout_constraintVertical_bias="0.333" />
+
+    <TextView
+        android:id="@+id/reunion_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="12:59"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/reunion_participants"
+        app:layout_constraintEnd_toStartOf="@+id/reunion_room"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/reunion_name"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.812" />
+
+    <TextView
+        android:id="@+id/reunion_room"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="204dp"
+        android:text="Hydrogene"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/reunion_participants"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.09"
+        app:layout_constraintStart_toEndOf="@+id/item_list_avatar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.812" />
+
     <ImageButton
         android:id="@+id/item_list_delete_button"
-        android:contentDescription="@string/fragment_meeting"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="38dp"
+        android:layout_height="41dp"
         android:layout_marginEnd="16dp"
         android:background="@null"
-        app:layout_constraintBottom_toBottomOf="@+id/item_list_name"
+        android:contentDescription="@string/fragment_meeting"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/item_list_name"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/reunion_room"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.44"
         app:srcCompat="@drawable/ic_delete_black_24dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
