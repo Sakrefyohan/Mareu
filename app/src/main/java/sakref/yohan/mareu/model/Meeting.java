@@ -1,44 +1,42 @@
 package sakref.yohan.mareu.model;
 
-import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 
 import java.util.List;
 
 public class Meeting {
 
-    /** Identifier */
-    private Integer id;
-
-    /** Subject of the meeting */
+    /**
+     * Subject of the meeting
+     */
     private String subject;
 
-    /** Date of the meeting */
+    /**
+     * Date of the meeting
+     */
     private String date;
 
-    /** hour of the meeting */
+    /**
+     * hour of the meeting
+     */
     private String time;
 
-    /** Room of the meeting */
+    /**
+     * Room of the meeting
+     */
     private Room room;
 
-    /**Participant of the meeting*/
+    /**
+     * Participant of the meeting
+     */
     private List<String> participants;
 
-    public Meeting(Integer id, String subject, String date, String time, Room room, List<String> participants){
-        this.id = id;
+    public Meeting(String subject, String date, String time, Room room, List<String> participants) {
         this.subject = subject;
         this.date = date;
         this.time = time;
         this.room = room;
         this.participants = participants;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getSubject() {
@@ -65,7 +63,7 @@ public class Meeting {
         this.time = time;
     }
 
-    public Room getRoom() {
+    public Drawable getRoom() {
         return room;
     }
 

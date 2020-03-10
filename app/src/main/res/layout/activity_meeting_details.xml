@@ -7,15 +7,15 @@
 
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/details_new_reunion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:text="@string/activity_meeting_details_activity"
         android:textAlignment="center"
-        android:textSize="40sp"
         android:textColor="@color/colorPrimary"
+        android:textSize="40sp"
         app:layout_constraintBottom_toTopOf="@id/activity_meeting_details_forms"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,88 +28,82 @@
         android:layout_marginBottom="20dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView"
-        >
+        app:layout_constraintTop_toBottomOf="@id/details_new_reunion">
 
         <EditText
-            android:inputType="text"
-            android:id="@+id/activity_meeting_details_subject"
+            android:id="@+id/details_subject"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/activity_meeting_details_subject"
-            app:layout_constraintBottom_toTopOf="@id/activity_meeting_details_date"
+            android:inputType="text"
+            app:layout_constraintBottom_toTopOf="@id/details_date"
             app:layout_constraintTop_toBottomOf="@+id/activity_meeting_details_forms"
             app:layout_constraintVertical_weight="1" />
 
         <EditText
-            android:inputType="date"
-            android:id="@+id/activity_meeting_details_date"
+            android:id="@+id/details_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clickable="false"
             android:focusable="false"
             android:hint="@string/activity_meeting_details_date"
-            app:layout_constraintBottom_toTopOf="@id/activity_meeting_details_time"
-            app:layout_constraintTop_toBottomOf="@+id/activity_meeting_details_subject"
-            app:layout_constraintVertical_weight="1"
-
-
-            />
+            android:inputType="date"
+            app:layout_constraintBottom_toTopOf="@id/details_time"
+            app:layout_constraintTop_toBottomOf="@+id/details_subject"
+            app:layout_constraintVertical_weight="1" />
 
         <EditText
-            android:inputType="time"
-            android:id="@+id/activity_meeting_details_time"
+            android:id="@+id/details_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clickable="false"
             android:focusable="false"
             android:hint="@string/activity_meeting_details_time"
-            app:layout_constraintBottom_toTopOf="@id/activity_meeting_details_people"
-            app:layout_constraintTop_toBottomOf="@+id/activity_meeting_details_date"
+            android:inputType="time"
+            app:layout_constraintBottom_toTopOf="@id/details_people"
+            app:layout_constraintTop_toBottomOf="@+id/details_date"
             app:layout_constraintVertical_weight="1" />
 
         <EditText
-            android:inputType="text"
-            android:id="@+id/activity_meeting_details_people"
+            android:id="@+id/details_people"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/activity_meeting_details_people"
-            app:layout_constraintBottom_toTopOf="@id/activity_meeting_details_chipGroup"
-            app:layout_constraintTop_toBottomOf="@+id/activity_meeting_details_time"
+            android:inputType="text"
+            app:layout_constraintBottom_toTopOf="@id/details_chipGroup"
+            app:layout_constraintTop_toBottomOf="@+id/details_time"
             app:layout_constraintVertical_weight="1" />
 
         <com.google.android.material.chip.ChipGroup
 
-            android:id="@+id/activity_meeting_details_chipGroup"
+            android:id="@+id/details_chipGroup"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:autofillHints="email@user"
-            app:layout_constraintBottom_toTopOf="@+id/activity_meeting_details_spinner"
-            app:layout_constraintTop_toBottomOf="@+id/activity_meeting_details_forms"
+            app:layout_constraintBottom_toTopOf="@+id/details_spinner"
+            app:layout_constraintTop_toBottomOf="@+id/details_forms"
             app:layout_constraintVertical_weight="1" />
 
         <Spinner
-            android:id="@+id/activity_meeting_details_spinner"
+            android:id="@+id/details_spinner"
             android:layout_width="match_parent"
             android:layout_height="35dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/activity_meeting_details_chipGroup"
+            app:layout_constraintTop_toBottomOf="@+id/details_chipGroup"
             app:layout_constraintVertical_weight="1">
-
-
         </Spinner>
 
         <Button
             android:id="@+id/create_reunion_button"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="10dp"
             android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
-            android:text="@string/activity_meeting_details_button"
             android:background="@color/colorPrimary"
             android:clickable="true"
-            android:focusable="true"/>
+            android:focusable="true"
+            android:text="@string/activity_meeting_details_button" />
 
 
     </LinearLayout>

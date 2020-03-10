@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -40,20 +41,24 @@ public class DetailsListMeeting extends AppCompatActivity implements AdapterView
 
 
     private static final String CREATE_REUNION = "0";
-    @BindView(R.id.activity_meeting_details_date)
+
+    @BindView(R.id.details_subject)
+    TextView mSubject;
+
+    @BindView(R.id.details_date)
     EditText mDatePicker;
 
-    @BindView(R.id.activity_meeting_details_time)
+    @BindView(R.id.details_time)
     EditText mTimePicker;
 
-    @BindView(R.id.activity_meeting_details_spinner)
+    @BindView(R.id.details_spinner)
     Spinner mSpinner;
+
 
     //TODO: Finish to initialise all item
     //TODO: Add check for email (check not empty)
 
     final Calendar myCalendar = Calendar.getInstance();
-
 
 
     @Override
@@ -65,7 +70,7 @@ public class DetailsListMeeting extends AppCompatActivity implements AdapterView
         /**
          * Code for the spinner
          * Here we fill the spinner with the list we have created on String
-*/
+         */
         ArrayAdapter<CharSequence> adapterSpinner = ArrayAdapter.createFromResource(this, R.array.Room, android.R.layout.simple_spinner_item);
         adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mSpinner.setAdapter(adapterSpinner);
@@ -82,11 +87,11 @@ public class DetailsListMeeting extends AppCompatActivity implements AdapterView
                 int hour = mCurrentTime.get(Calendar.HOUR_OF_DAY);
                 int minute = mCurrentTime.get(Calendar.MINUTE);
 
-                TimePickerDialog mTimePickerDialogue ;
+                TimePickerDialog mTimePickerDialogue;
                 mTimePickerDialogue = new TimePickerDialog(DetailsListMeeting.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                        mTimePicker.setText( selectedHour + ":" + selectedMinute);
+                        mTimePicker.setText(selectedHour + ":" + selectedMinute);
                     }
                 }, hour, minute, true);
                 mTimePickerDialogue.setTitle("Select Time");
@@ -171,7 +176,7 @@ public class DetailsListMeeting extends AppCompatActivity implements AdapterView
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         String text = parent.getItemAtPosition(position).toString();
-        Toast.makeText(parent.getContext(),text, Toast.LENGTH_SHORT);
+        Toast.makeText(parent.getContext(), text, Toast.LENGTH_SHORT);
     }
 
     @Override
@@ -181,13 +186,12 @@ public class DetailsListMeeting extends AppCompatActivity implements AdapterView
 
     //TODO: Get all item from the activity
     @OnClick(R.id.create_reunion_button)
-    public void onCreateReunion(){
+    public void onCreateReunion() {
         Intent createReunion = new Intent();
-        Meeting meeting = new Meeting(0, mSubject.getText() ,"",mTimePicker.getText().toString(),"",mParticipants.getList,);
-        createReunion.putExtra(CREATE_REUNION,"")
+        Meeting meeting = new Meeting(mSubject.getText(), "", mTimePicker.getText().toString(), "", mParticipants.getList, );
+        createReunion.putExtra(CREATE_REUNION, "");
         //TODO: Create the meeting
     }
-
 
 
 }

@@ -19,6 +19,10 @@
 
     <!--String for fragment_meeting-->
     <string name="fragment_meeting">Couleur de la reunion</string>
+    <string name="reunion_mail_exemple">azdu@azd.fr , azd@azd.fr, azdgfr@fefz.fr, azdu@azd.fr , azd@azd.fr, azdgfr@fefz.fr, azdu@azd.fr , azd@azd.fr, azdgfr@fefz.fr, azdu@azd.fr , azd@azd.fr, azdgfr@fefz.fr,</string>
+    <string name="reunion_room_exemple">Hydrogene</string>
+    <string name="reunion_time_exemple">12:59</string>
+    <string name="reunion_subject_exemple">Travail D\'équipe</string>
 
 
     <!--String to fill the spinner-->

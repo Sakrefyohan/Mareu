@@ -1,9 +1,8 @@
 package sakref.yohan.mareu.model;
 
-public class Room {
+import android.graphics.drawable.Drawable;
 
-    /** Identifier */
-    private Integer id;
+public class Room {
 
     /** Subject of the meeting */
     private String name;
@@ -11,19 +10,10 @@ public class Room {
     /** Date of the meeting */
     private String color;
 
-    public Room(Integer id, String name, String color){
-        this.id = id;
+    public Room(String name, String color){
         this.name = name;
         this.color = color;
 
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getName() {

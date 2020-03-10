@@ -6,6 +6,9 @@ import sakref.yohan.mareu.model.Meeting;
 import sakref.yohan.mareu.model.Room;
 
 public class DummyMeetingApiService implements MeetingApiService {
+
+    private List<Room> mRooms = DummyRoomGenerator.generateRooms();
+
     @Override
     public List<Meeting> getMeeting() {
         return null;

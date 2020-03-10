@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="100dp"
     android:orientation="vertical">
@@ -9,83 +10,73 @@
     <!--TODO:Change Image to color -->
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/item_list_avatar"
+        android:id="@+id/reunion_color"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginStart="10dp"
+        android:background="@drawable/radius"
         android:contentDescription="@string/fragment_meeting"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.533" />
+        android:padding="10dp"/>
 
     <TextView
-        android:id="@+id/reunion_name"
+        android:id="@+id/reunion_subject"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="Nom de la reunion"
+        android:text="@string/reunion_subject_exemple"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/item_list_avatar"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.296" />
-
-    <TextView
-        android:id="@+id/reunion_participants"
-        android:layout_width="265dp"
-        android:layout_height="33dp"
-        android:text="Details de la reunion"
-        android:textStyle="italic"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/item_list_delete_button"
-        app:layout_constraintHorizontal_bias="0.38"
-        app:layout_constraintStart_toEndOf="@+id/item_list_avatar"
-        app:layout_constraintTop_toBottomOf="@+id/reunion_name"
-        app:layout_constraintVertical_bias="0.333" />
+        app:layout_constraintLeft_toRightOf="@id/reunion_color"
+        app:layout_constraintRight_toLeftOf="@id/reunion_time"
+        app:layout_constraintTop_toTopOf="@id/reunion_color" />
 
     <TextView
         android:id="@+id/reunion_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="12:59"
+        android:text="@string/reunion_time_exemple"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/reunion_participants"
-        app:layout_constraintEnd_toStartOf="@+id/reunion_room"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/reunion_name"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.812" />
+        app:layout_constraintLeft_toRightOf="@id/reunion_subject"
+        app:layout_constraintRight_toLeftOf="@id/reunion_room"
+        app:layout_constraintTop_toTopOf="@id/reunion_subject" />
 
     <TextView
         android:id="@+id/reunion_room"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="204dp"
-        android:text="Hydrogene"
+        android:text="@string/reunion_room_exemple"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/reunion_participants"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.09"
-        app:layout_constraintStart_toEndOf="@+id/item_list_avatar"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.812" />
+        app:layout_constraintLeft_toRightOf="@id/reunion_time"
+        app:layout_constraintRight_toLeftOf="@id/reunion_delete"
+        app:layout_constraintTop_toTopOf="@id/reunion_time" />
+
+    <TextView
+        android:id="@+id/reunion_participants"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:ellipsize="none"
+        android:maxLines="2"
+        android:text="@string/reunion_mail_exemple"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/reunion_color"
+        app:layout_constraintRight_toLeftOf="@id/reunion_delete"
+        app:layout_constraintTop_toBottomOf="@id/reunion_subject"
+        />
 
     <ImageButton
-        android:id="@+id/item_list_delete_button"
+        android:id="@+id/reunion_delete"
         android:layout_width="38dp"
         android:layout_height="41dp"
-        android:layout_marginEnd="16dp"
         android:background="@null"
         android:contentDescription="@string/fragment_meeting"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/reunion_room"
+        app:layout_constraintLeft_toRightOf="@id/reunion_room"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.44"
         app:srcCompat="@drawable/ic_delete_black_24dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
