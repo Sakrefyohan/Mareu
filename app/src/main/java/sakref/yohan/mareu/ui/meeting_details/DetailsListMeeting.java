@@ -40,6 +40,7 @@ import java.util.Locale;
 
 import sakref.yohan.mareu.R;
 import sakref.yohan.mareu.model.Meeting;
+import sakref.yohan.mareu.model.Room;
 
 public class DetailsListMeeting extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -201,10 +202,26 @@ public class DetailsListMeeting extends AppCompatActivity implements AdapterView
     public void onCreateReunion() {
         Intent createReunion = new Intent();
         List<String> Participants = new ArrayList<>();
-        Meeting meeting = new Meeting(mSubject.getText().toString(), myCalendar.getTime().toString(), mTimePicker.getText().toString(), mSpinner.getSelectedItem().toString() , Participants);
+        Meeting meeting = new Meeting(mSubject.getText().toString(), myCalendar.getTime().toString(), mTimePicker.getText().toString(), mSpinner.getSelectedItem() , Participants);
         createReunion.putExtra(CREATE_REUNION, "");
         //TODO: Create the meeting
     }
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
