@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import androidx.annotation.BinderThread;
 import androidx.annotation.NonNull;
 
 import butterknife.BindView;
@@ -28,6 +29,7 @@ import sakref.yohan.mareu.R;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.SimpleDateFormat;
@@ -54,6 +56,17 @@ public class DetailsListMeeting extends AppCompatActivity implements AdapterView
     @BindView(R.id.details_spinner)
     Spinner mSpinner;
 
+    @BindView(R.id.details_people)
+    EditText mPeople;
+
+    @BindView(R.id.details_chipGroup)
+    ChipGroup mChipGroup;
+
+    @BindView(R.id.details_people)
+
+
+    @BindView(R.id.create_reunion_button)
+    Button mCreateReunion;
 
     //TODO: Finish to initialise all item
     //TODO: Add check for email (check not empty)
@@ -188,7 +201,7 @@ public class DetailsListMeeting extends AppCompatActivity implements AdapterView
     @OnClick(R.id.create_reunion_button)
     public void onCreateReunion() {
         Intent createReunion = new Intent();
-        Meeting meeting = new Meeting(mSubject.getText(), "", mTimePicker.getText().toString(), "", mParticipants.getList, );
+        Meeting meeting = new Meeting(mSubject.getText().toString(), myCalendar.getTime().toString(), mTimePicker.getText().toString(), mSpinner.getSelectedItem().toString() , mPeople.getList());
         createReunion.putExtra(CREATE_REUNION, "");
         //TODO: Create the meeting
     }

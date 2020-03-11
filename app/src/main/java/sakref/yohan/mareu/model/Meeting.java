@@ -63,7 +63,7 @@ public class Meeting {
         this.time = time;
     }
 
-    public Drawable getRoom() {
+    public Room getRoom() {
         return room;
     }
 
@@ -71,11 +71,10 @@ public class Meeting {
         this.room = room;
     }
 
-    public String getParticipants() {
-        return participants;
+    public List<String> getParticipants() {        return participants;
     }
 
-    public void setParticipants(String participants) {
+    public void setParticipants(List<String> participants) {
         this.participants = participants;
     }
 }
