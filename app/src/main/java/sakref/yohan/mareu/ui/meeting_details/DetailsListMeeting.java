@@ -33,7 +33,9 @@ import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
 import sakref.yohan.mareu.R;
@@ -62,13 +64,10 @@ public class DetailsListMeeting extends AppCompatActivity implements AdapterView
     @BindView(R.id.details_chipGroup)
     ChipGroup mChipGroup;
 
-    @BindView(R.id.details_people)
+    //@BindView(R.id.create_reunion_button)
+    //Button mCreateReunion;
 
-
-    @BindView(R.id.create_reunion_button)
-    Button mCreateReunion;
-
-    //TODO: Finish to initialise all item
+    //TODO: Finish to initialise all item - DONE
     //TODO: Add check for email (check not empty)
 
     final Calendar myCalendar = Calendar.getInstance();
@@ -201,7 +200,8 @@ public class DetailsListMeeting extends AppCompatActivity implements AdapterView
     @OnClick(R.id.create_reunion_button)
     public void onCreateReunion() {
         Intent createReunion = new Intent();
-        Meeting meeting = new Meeting(mSubject.getText().toString(), myCalendar.getTime().toString(), mTimePicker.getText().toString(), mSpinner.getSelectedItem().toString() , mPeople.getList());
+        List<String> Participants = new ArrayList<>();
+        Meeting meeting = new Meeting(mSubject.getText().toString(), myCalendar.getTime().toString(), mTimePicker.getText().toString(), mSpinner.getSelectedItem().toString() , Participants);
         createReunion.putExtra(CREATE_REUNION, "");
         //TODO: Create the meeting
     }
