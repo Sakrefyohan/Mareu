@@ -41,6 +41,7 @@ import java.util.Locale;
 import sakref.yohan.mareu.R;
 import sakref.yohan.mareu.model.Meeting;
 import sakref.yohan.mareu.model.Room;
+import sakref.yohan.mareu.service.DummyRoomGenerator;
 
 public class DetailsListMeeting extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -82,9 +83,10 @@ public class DetailsListMeeting extends AppCompatActivity implements AdapterView
 
         /**
          * Code for the spinner
-         * Here we fill the spinner with the list we have created on String
+         * Here we fill the spinner with the list we have created on String.xml
          */
-        ArrayAdapter<CharSequence> adapterSpinner = ArrayAdapter.createFromResource(this, R.array.Room, android.R.layout.simple_spinner_item);
+        //ArrayAdapter<CharSequence> adapterSpinner = ArrayAdapter.createFromResource(this, R.array.Room, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapterSpinner = ArrayAdapter.createFromResource(DummyRoomGenerator.generateRooms);
         adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mSpinner.setAdapter(adapterSpinner);
         mSpinner.setOnItemSelectedListener(this);

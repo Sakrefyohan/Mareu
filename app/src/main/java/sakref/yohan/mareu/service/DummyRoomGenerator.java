@@ -1,6 +1,8 @@
 package sakref.yohan.mareu.service;
 
 
+import android.content.Context;
+
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +29,8 @@ public abstract class DummyRoomGenerator {
 
     );
 
-    static List<Room> generateRooms(){
+
+    public static List<Room> generateRooms(){
         return new ArrayList<>(DUMMY_ROOMS);
     }
 
