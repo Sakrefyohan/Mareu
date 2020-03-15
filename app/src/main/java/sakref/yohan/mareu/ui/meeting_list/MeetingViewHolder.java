@@ -45,7 +45,7 @@ public class MeetingViewHolder extends RecyclerView.ViewHolder {
 
 
     }
-
+    //TODO : Finish the recyclerview
     public void bind(Meeting meeting) {
         mReunionName.setText(meeting.getSubject());
         mReunionTime.setText(meeting.getTime());

@@ -8,6 +8,6 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="SecondAppTheme" parent="Theme.AppCompat.Light.Dialog.Alert"/>
+    <style name="SecondAppTheme" parent="Theme.MaterialComponents.Light.Dialog.Alert"/>
 
 </resources>

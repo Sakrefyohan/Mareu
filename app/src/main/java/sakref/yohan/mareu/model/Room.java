@@ -8,9 +8,9 @@ public class Room {
     private String name;
 
     /** Date of the meeting */
-    private String color;
+    private int color;
 
-    public Room(String name, String color){
+    public Room(String name, int color){
         this.name = name;
         this.color = color;
 
@@ -24,11 +24,11 @@ public class Room {
         this.name = name;
     }
 
-    public String getColor() {
+    public int getColor() {
         return color;
     }
 
-    public void setColor(String color) {
+    public void setColor(int color) {
         this.color = color;
     }
 }

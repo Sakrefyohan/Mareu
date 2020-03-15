@@ -7,7 +7,7 @@
     android:orientation="vertical">
 
 
-    <!--TODO:Change Image to color -->
+    <!--TODO:Change Image to color-->
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/reunion_color"

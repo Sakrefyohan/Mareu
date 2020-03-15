@@ -4,13 +4,13 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -18,7 +18,6 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import androidx.annotation.BinderThread;
 import androidx.annotation.NonNull;
 
 import butterknife.BindView;
@@ -26,11 +25,10 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import sakref.yohan.mareu.R;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -38,10 +36,8 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-import sakref.yohan.mareu.R;
 import sakref.yohan.mareu.model.Meeting;
 import sakref.yohan.mareu.model.Room;
-import sakref.yohan.mareu.service.DummyRoomGenerator;
 
 public class DetailsListMeeting extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -66,10 +62,6 @@ public class DetailsListMeeting extends AppCompatActivity implements AdapterView
     @BindView(R.id.details_chipGroup)
     ChipGroup mChipGroup;
 
-    //@BindView(R.id.create_reunion_button)
-    //Button mCreateReunion;
-
-    //TODO: Finish to initialise all item - DONE
     //TODO: Add check for email (check not empty)
 
     final Calendar myCalendar = Calendar.getInstance();
@@ -85,11 +77,34 @@ public class DetailsListMeeting extends AppCompatActivity implements AdapterView
          * Code for the spinner
          * Here we fill the spinner with the list we have created on String.xml
          */
-        //ArrayAdapter<CharSequence> adapterSpinner = ArrayAdapter.createFromResource(this, R.array.Room, android.R.layout.simple_spinner_item);
-        ArrayAdapter<CharSequence> adapterSpinner = ArrayAdapter.createFromResource(DummyRoomGenerator.generateRooms);
+        ArrayAdapter<CharSequence> adapterSpinner = ArrayAdapter.createFromResource(this, R.array.Room, android.R.layout.simple_spinner_item);
         adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mSpinner.setAdapter(adapterSpinner);
         mSpinner.setOnItemSelectedListener(this);
+
+        mPeople.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+                        (keyCode == KeyEvent.KEYCODE_ENTER)) {
+
+                    String peopleNewChip = mPeople.getText().toString();
+
+                    Chip peopleChip = new Chip(DetailsListMeeting.this);
+                    peopleChip.setText(peopleNewChip);
+                    peopleChip.setCloseIconVisible(true);
+                    mChipGroup.addView(peopleChip);
+                    mPeople.setText("");
+                    //TODO: Delete the chip on click delete icon
+                    return true;
+
+                }
+                return false;
+            }
+        });
+
+
 
         /**
          * Code for the time picker
@@ -153,6 +168,7 @@ public class DetailsListMeeting extends AppCompatActivity implements AdapterView
         mDatePicker.setText(sdf.format(myCalendar.getTime()));
     }
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -199,12 +215,13 @@ public class DetailsListMeeting extends AppCompatActivity implements AdapterView
 
     }
 
-    //TODO: Get all item from the activity
+
     @OnClick(R.id.create_reunion_button)
     public void onCreateReunion() {
         Intent createReunion = new Intent();
         List<String> Participants = new ArrayList<>();
-        Meeting meeting = new Meeting(mSubject.getText().toString(), myCalendar.getTime().toString(), mTimePicker.getText().toString(), mSpinner.getSelectedItem() , Participants);
+        Room selectedRom = new Room(mSpinner.getSelectedItem().toString(), getResources().getIntArray(R.array.RoomColor)[mSpinner.getSelectedItemPosition()]);
+        Meeting meeting = new Meeting(mSubject.getText().toString(), myCalendar.getTime().toString(), mTimePicker.getText().toString(), selectedRom, Participants);
         createReunion.putExtra(CREATE_REUNION, "");
         //TODO: Create the meeting
     }

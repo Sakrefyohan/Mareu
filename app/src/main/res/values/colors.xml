@@ -16,6 +16,10 @@
     <color name="colorRoomFluorine">#2285FF</color>
     <color name="colorRoomNeon">#AA22FF</color>
 
+        <!--TODO: Add the color-->
+    <integer-array name="RoomColor">
+        <item>@color/colorRoomBeryllium</item>
+    </integer-array>
 
 
 
