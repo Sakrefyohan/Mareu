@@ -71,8 +71,7 @@ public class Meeting {
         this.room = room;
     }
 
-    public List<String> getParticipants() {        return participants;
-    }
+    public List<String> getParticipants() { return participants; }
 
     public void setParticipants(List<String> participants) {
         this.participants = participants;

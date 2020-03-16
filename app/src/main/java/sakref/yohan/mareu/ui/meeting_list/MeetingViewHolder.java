@@ -39,6 +39,8 @@ public class MeetingViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.reunion_delete)
     ImageButton mReunionDelete;
 
+
+
     public MeetingViewHolder(@NonNull View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);
@@ -47,11 +49,13 @@ public class MeetingViewHolder extends RecyclerView.ViewHolder {
     }
     //TODO : Finish the recyclerview
     public void bind(Meeting meeting) {
+
         mReunionName.setText(meeting.getSubject());
         mReunionTime.setText(meeting.getTime());
+
         mReunionRoom.setText((CharSequence) meeting.getRoom());
-        mReunionParticipants.setText(meeting.getParticipants());
-        mRoomColor.setBackground(meeting.getRoom());
+        mReunionParticipants.setText(meeting.getParticipants().toString());
+        mRoomColor.getBackground().setTint(R.color.);
 
     }
 }
