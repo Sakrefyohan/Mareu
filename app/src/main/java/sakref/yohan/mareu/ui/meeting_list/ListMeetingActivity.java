@@ -27,13 +27,15 @@ import sakref.yohan.mareu.ui.meeting_details.DetailsListMeeting;
 
 public class ListMeetingActivity extends AppCompatActivity {
 
-
+    private static final int CREATE_REUNION = 1;
+    private final int MEETING_DETAILS = 1;
 
     @BindView(R.id.activity_meeting_list_add_meeting)
     FloatingActionButton mFloatingActionButton;
 
     @BindView(R.id.activity_meeting_list_recyclerview)
     RecyclerView mRecyclerView;
+
 
 
     @Override
@@ -51,6 +53,22 @@ public class ListMeetingActivity extends AppCompatActivity {
                 inflater.inflate(R.menu.toolbar_menu, menu);
         return true;
     }
+
+    @Override               //TODO :  1param              2param        3param
+    // TODO : While in DetailsListMeeting --> onCreateReunion
+    // TODO : there's only param for the putExtra, is because of "super." ?
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == CREATE_REUNION) {
+            if(resultCode == ListMeetingActivity.RESULT_OK){
+                String result=data.getStringExtra("result");
+            }
+            if (resultCode == ListMeetingActivity.RESULT_CANCELED) {
+                //Write your code if there's no result
+            }
+        }
+    }//onActivityResult
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -80,8 +98,9 @@ public class ListMeetingActivity extends AppCompatActivity {
     }
     @OnClick(R.id.activity_meeting_list_add_meeting)
     public void onShowDetails(){
+
         Intent intent = new Intent(this, DetailsListMeeting.class);
-        startActivity(intent);
+        startActivityForResult(intent, MEETING_DETAILS);
 
     }
 }

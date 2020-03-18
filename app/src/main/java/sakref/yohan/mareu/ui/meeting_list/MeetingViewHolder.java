@@ -6,18 +6,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.google.android.material.chip.Chip;
-import com.google.android.material.chip.ChipGroup;
-
-import org.w3c.dom.Text;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import sakref.yohan.mareu.R;
 import sakref.yohan.mareu.model.Meeting;
-import sakref.yohan.mareu.model.Room;
+
 
 public class MeetingViewHolder extends RecyclerView.ViewHolder {
 
@@ -47,15 +43,15 @@ public class MeetingViewHolder extends RecyclerView.ViewHolder {
 
 
     }
-    //TODO : Finish the recyclerview
+    //TODO : Finish the recyclerview --DONE
     public void bind(Meeting meeting) {
+
 
         mReunionName.setText(meeting.getSubject());
         mReunionTime.setText(meeting.getTime());
-
         mReunionRoom.setText((CharSequence) meeting.getRoom());
         mReunionParticipants.setText(meeting.getParticipants().toString());
-        mRoomColor.getBackground().setTint(R.color.);
+        mRoomColor.setColorFilter(ContextCompat.getColor(itemView.getContext(), meeting.getRoom().getColor()));
 
     }
 }

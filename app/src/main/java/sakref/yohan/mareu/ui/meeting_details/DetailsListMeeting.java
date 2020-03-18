@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -26,18 +27,22 @@ import butterknife.OnClick;
 import sakref.yohan.mareu.R;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompatSideChannelService;
 
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
+import java.util.regex.Pattern;
 
 import sakref.yohan.mareu.model.Meeting;
 import sakref.yohan.mareu.model.Room;
+import sakref.yohan.mareu.ui.meeting_list.ListMeetingActivity;
 
 public class DetailsListMeeting extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -62,9 +67,10 @@ public class DetailsListMeeting extends AppCompatActivity implements AdapterView
     @BindView(R.id.details_chipGroup)
     ChipGroup mChipGroup;
 
-    //TODO: Add check for email (check not empty)
+    //TODO: Add check for email (check not empty) -- DONE
 
     final Calendar myCalendar = Calendar.getInstance();
+    private CharSequence emailChip;
 
 
     @Override
@@ -73,14 +79,23 @@ public class DetailsListMeeting extends AppCompatActivity implements AdapterView
         setContentView(R.layout.activity_meeting_details);
         ButterKnife.bind(this);
 
-        /**
+        /*
          * Code for the spinner
          * Here we fill the spinner with the list we have created on String.xml
+         * (@param mSpinner)
          */
         ArrayAdapter<CharSequence> adapterSpinner = ArrayAdapter.createFromResource(this, R.array.Room, android.R.layout.simple_spinner_item);
         adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mSpinner.setAdapter(adapterSpinner);
         mSpinner.setOnItemSelectedListener(this);
+
+        /*
+         * Code for the ChipGroup
+         * Here are some check if the email is good or no.
+         */
+
+
+
 
         mPeople.setOnKeyListener(new View.OnKeyListener() {
             @Override
@@ -90,23 +105,55 @@ public class DetailsListMeeting extends AppCompatActivity implements AdapterView
                         (keyCode == KeyEvent.KEYCODE_ENTER)) {
 
                     String peopleNewChip = mPeople.getText().toString();
-
                     Chip peopleChip = new Chip(DetailsListMeeting.this);
-                    peopleChip.setText(peopleNewChip);
-                    peopleChip.setCloseIconVisible(true);
-                    mChipGroup.addView(peopleChip);
-                    mPeople.setText("");
-                    //TODO: Delete the chip on click delete icon
+
+                    if (isValid(peopleNewChip)) {
+                        peopleChip.setText(peopleNewChip);
+                        peopleChip.setCloseIconVisible(true);
+                        mChipGroup.addView(peopleChip);
+                        mPeople.setText("");
+                    }else{
+                        mPeople.setText(peopleNewChip);
+                        Toast.makeText(DetailsListMeeting.this, R.string.chip_invalid_mail + ":" + peopleNewChip,Toast.LENGTH_SHORT).show();
+                    }
+
+
+
+                    //TODO: Delete the chip on click delete icon --DONE
+                    peopleChip.setOnCloseIconClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            mChipGroup.removeView(peopleChip);
+                        }
+                    });
+
                     return true;
 
                 }
                 return false;
             }
+
+            private boolean isValid(String email)
+            {
+                String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
+                        "[a-zA-Z0-9_+&*-]+)*@" +
+                        "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
+                        "A-Z]{2,7}$";
+
+                Pattern pat = Pattern.compile(emailRegex);
+                if (email == null)
+                    return false;
+                return pat.matcher(email).matches();
+            }
+
+
         });
 
 
 
-        /**
+
+
+        /*
          * Code for the time picker
          */
 
@@ -117,11 +164,10 @@ public class DetailsListMeeting extends AppCompatActivity implements AdapterView
                 int hour = mCurrentTime.get(Calendar.HOUR_OF_DAY);
                 int minute = mCurrentTime.get(Calendar.MINUTE);
 
-                TimePickerDialog mTimePickerDialogue;
-                mTimePickerDialogue = new TimePickerDialog(DetailsListMeeting.this, new TimePickerDialog.OnTimeSetListener() {
+                TimePickerDialog mTimePickerDialogue = new TimePickerDialog(DetailsListMeeting.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                        mTimePicker.setText(selectedHour + ":" + selectedMinute);
+                        mTimePicker.setText(selectedHour + " : " + selectedMinute);
                     }
                 }, hour, minute, true);
                 mTimePickerDialogue.setTitle("Select Time");
@@ -130,10 +176,10 @@ public class DetailsListMeeting extends AppCompatActivity implements AdapterView
         });
 
 
-        /**
-         * Code for the date picker
-         * define first myCalendar as Final
-         * and bind the view on for the button to pop-up the picker
+        /*
+          Code for the date picker
+          define first myCalendar as Final
+          and bind the view on for the button to pop-up the picker
          */
         DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
 
@@ -150,7 +196,6 @@ public class DetailsListMeeting extends AppCompatActivity implements AdapterView
         };
 
         mDatePicker.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 // Auto-generated method stub
@@ -207,7 +252,7 @@ public class DetailsListMeeting extends AppCompatActivity implements AdapterView
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         String text = parent.getItemAtPosition(position).toString();
-        Toast.makeText(parent.getContext(), text, Toast.LENGTH_SHORT);
+        Toast.makeText(parent.getContext(), text, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -216,15 +261,25 @@ public class DetailsListMeeting extends AppCompatActivity implements AdapterView
     }
 
 
+
+
     @OnClick(R.id.create_reunion_button)
     public void onCreateReunion() {
         Intent createReunion = new Intent();
         List<String> Participants = new ArrayList<>();
-        Room selectedRom = new Room(mSpinner.getSelectedItem().toString(), getResources().getIntArray(R.array.RoomColor)[mSpinner.getSelectedItemPosition()]);
-        Meeting meeting = new Meeting(mSubject.getText().toString(), myCalendar.getTime().toString(), mTimePicker.getText().toString(), selectedRom, Participants);
-        createReunion.putExtra(CREATE_REUNION, "");
-        //TODO: Create the meeting
+        if(Participants.isEmpty() || mSubject.getText().toString() == null || myCalendar.getTime().toString() == null || mTimePicker.getText().toString() == null) {
+            Toast.makeText(DetailsListMeeting.this, "Ce champ est vide" + ":" + Participants, Toast.LENGTH_SHORT).show();
+            finish();
+        }
+        Room selectedRoom = new Room(mSpinner.getSelectedItem().toString(), getResources().getIntArray(R.array.RoomColor)[mSpinner.getSelectedItemPosition()]);
+        Meeting meeting = new Meeting(mSubject.getText().toString(), myCalendar.getTime().toString(), mTimePicker.getText().toString(), selectedRoom, Participants);
+        /* TODO : ASK FOR EXPLANATION */
+        createReunion.putExtra(CREATE_REUNION, (Parcelable) meeting);
+        setResult(ListMeetingActivity.RESULT_OK,createReunion);
+        //TODO: Create the meeting -- Seems to be done (?)
     }
+
+
 
 
 }

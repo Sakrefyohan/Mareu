@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#005AAD</color>
     <color name="colorAccent">#11A501</color>
 
+    <color name="colorWHITE">#FFFFFF</color>
+
     <!--Room Color-->
     <color name="colorRoomHydrogen">#FF2222</color>
     <color name="colorRoomHelium">#FF6F22</color>
@@ -16,9 +18,18 @@
     <color name="colorRoomFluorine">#2285FF</color>
     <color name="colorRoomNeon">#AA22FF</color>
 
-        <!--TODO: Add the color-->
+        <!--TODO: Add the color XX DONE -->
     <integer-array name="RoomColor">
+        <item>@color/colorRoomHydrogen</item>
+        <item>@color/colorRoomHelium</item>
+        <item>@color/colorRoomLithium</item>
         <item>@color/colorRoomBeryllium</item>
+        <item>@color/colorRoomBoron</item>
+        <item>@color/colorRoomCarbon</item>
+        <item>@color/colorRoomNitrogen</item>
+        <item>@color/colorRoomOxygen</item>
+        <item>@color/colorRoomFluorine</item>
+        <item>@color/colorRoomNeon</item>
     </integer-array>
 
 
