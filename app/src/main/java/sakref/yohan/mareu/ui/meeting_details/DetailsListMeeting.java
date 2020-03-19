@@ -95,8 +95,6 @@ public class DetailsListMeeting extends AppCompatActivity implements AdapterView
          */
 
 
-
-
         mPeople.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -112,11 +110,10 @@ public class DetailsListMeeting extends AppCompatActivity implements AdapterView
                         peopleChip.setCloseIconVisible(true);
                         mChipGroup.addView(peopleChip);
                         mPeople.setText("");
-                    }else{
+                    } else {
                         mPeople.setText(peopleNewChip);
-                        Toast.makeText(DetailsListMeeting.this, R.string.chip_invalid_mail + ":" + peopleNewChip,Toast.LENGTH_SHORT).show();
+                        Toast.makeText(DetailsListMeeting.this, R.string.chip_invalid_mail + ":" + peopleNewChip, Toast.LENGTH_SHORT).show();
                     }
-
 
 
                     //TODO: Delete the chip on click delete icon --DONE
@@ -133,9 +130,8 @@ public class DetailsListMeeting extends AppCompatActivity implements AdapterView
                 return false;
             }
 
-            private boolean isValid(String email)
-            {
-                String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
+            private boolean isValid(String email) {
+                String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\." +
                         "[a-zA-Z0-9_+&*-]+)*@" +
                         "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
                         "A-Z]{2,7}$";
@@ -148,10 +144,6 @@ public class DetailsListMeeting extends AppCompatActivity implements AdapterView
 
 
         });
-
-
-
-
 
         /*
          * Code for the time picker
@@ -252,7 +244,7 @@ public class DetailsListMeeting extends AppCompatActivity implements AdapterView
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         String text = parent.getItemAtPosition(position).toString();
-        Toast.makeText(parent.getContext(), text, Toast.LENGTH_SHORT).show();
+        Toast.makeText(parent.getContext(), text, Toast.LENGTH_SHORT);
     }
 
     @Override
@@ -260,42 +252,34 @@ public class DetailsListMeeting extends AppCompatActivity implements AdapterView
 
     }
 
-
-
-
     @OnClick(R.id.create_reunion_button)
     public void onCreateReunion() {
         Intent createReunion = new Intent();
         List<String> Participants = new ArrayList<>();
-        if(Participants.isEmpty() || mSubject.getText().toString() == null || myCalendar.getTime().toString() == null || mTimePicker.getText().toString() == null) {
-            Toast.makeText(DetailsListMeeting.this, "Ce champ est vide" + ":" + Participants, Toast.LENGTH_SHORT).show();
-            finish();
-        }
-        Room selectedRoom = new Room(mSpinner.getSelectedItem().toString(), getResources().getIntArray(R.array.RoomColor)[mSpinner.getSelectedItemPosition()]);
-        Meeting meeting = new Meeting(mSubject.getText().toString(), myCalendar.getTime().toString(), mTimePicker.getText().toString(), selectedRoom, Participants);
-        /* TODO : ASK FOR EXPLANATION */
-        createReunion.putExtra(CREATE_REUNION, (Parcelable) meeting);
-        setResult(ListMeetingActivity.RESULT_OK,createReunion);
-        //TODO: Create the meeting -- Seems to be done (?)
+        String meetingSubject = mSubject.getText().toString();
+        String meetingDate = myCalendar.getTime().toString();
+        String meetingTime = mTimePicker.getText().toString();
+        String roomRoom = mSpinner.getSelectedItem().toString();
+        int roomColor = getResources().getIntArray(R.array.RoomColor)[mSpinner.getSelectedItemPosition()];
+
+            if (meetingSubject.equals("")) {
+                Toast.makeText(DetailsListMeeting.this, "Veuillez definir un sujet de reunion", Toast.LENGTH_SHORT).show();
+
+            } else if (meetingDate.equals("")) {
+                Toast.makeText(DetailsListMeeting.this, "Veuillez definir une date de réunion", Toast.LENGTH_SHORT).show();
+            } else if (meetingTime.equals("")) {
+                Toast.makeText(DetailsListMeeting.this, "Veuillez definir une heure de réunion", Toast.LENGTH_SHORT).show();
+            } else if (!Participants.isEmpty()) {
+                Toast.makeText(DetailsListMeeting.this, "Veuillez remplir des participants", Toast.LENGTH_SHORT).show();
+            } else {
+                Room selectedRoom = new Room(roomRoom, roomColor);
+                Meeting meeting = new Meeting(meetingSubject, meetingDate, meetingTime, selectedRoom, Participants);
+                /* TODO : ASK FOR EXPLANATION */
+                createReunion.putExtra(CREATE_REUNION, (Parcelable) meeting);
+                setResult(ListMeetingActivity.RESULT_OK, createReunion);
+                //TODO: Create the meeting -- Seems to be done (?)
+            }
+
+
     }
-
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
