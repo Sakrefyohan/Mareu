@@ -23,12 +23,17 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import sakref.yohan.mareu.R;
+import sakref.yohan.mareu.di.DI;
+import sakref.yohan.mareu.model.Meeting;
+import sakref.yohan.mareu.service.MeetingApiService;
 import sakref.yohan.mareu.ui.meeting_details.DetailsListMeeting;
+
+import static sakref.yohan.mareu.ui.meeting_details.DetailsListMeeting.CREATE_REUNION;
 
 public class ListMeetingActivity extends AppCompatActivity {
 
-    private static final int CREATE_REUNION = 1;
-    private final int MEETING_DETAILS = 1;
+
+    private static final int MEETING_DETAILS = 1;
 
     @BindView(R.id.activity_meeting_list_add_meeting)
     FloatingActionButton mFloatingActionButton;
@@ -36,6 +41,10 @@ public class ListMeetingActivity extends AppCompatActivity {
     @BindView(R.id.activity_meeting_list_recyclerview)
     RecyclerView mRecyclerView;
 
+    MeetingApiService mMeetingApiService;
+
+    //TODO : initList() -- S'inspirer du projet precedent
+    //
 
 
     @Override
@@ -43,6 +52,7 @@ public class ListMeetingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meeting_list);
         ButterKnife.bind(this);
+        mMeetingApiService = DI.getNewInstanceApiService();
 
 
     }
@@ -50,26 +60,24 @@ public class ListMeetingActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-                inflater.inflate(R.menu.toolbar_menu, menu);
+        inflater.inflate(R.menu.toolbar_menu, menu);
         return true;
     }
 
-    @Override               //TODO :  1param              2param        3param
-    // TODO : While in DetailsListMeeting --> onCreateReunion
-    // TODO : there's only param for the putExtra, is because of "super." ?
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == CREATE_REUNION) {
-            if(resultCode == ListMeetingActivity.RESULT_OK){
-                String result=data.getStringExtra("result");
+        if (requestCode == MEETING_DETAILS) {
+            if (resultCode == ListMeetingActivity.RESULT_OK) {
+                Meeting result = (Meeting) data.getSerializableExtra(CREATE_REUNION);
+                mMeetingApiService.addMeeting(result);
             }
-            if (resultCode == ListMeetingActivity.RESULT_CANCELED) {
-                //Write your code if there's no result
-            }
-        }
-    }//onActivityResult
 
+        }
+    }
+
+    //TODO : TRIE =/= FILTRE
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
@@ -96,8 +104,9 @@ public class ListMeetingActivity extends AppCompatActivity {
 
 
     }
+
     @OnClick(R.id.activity_meeting_list_add_meeting)
-    public void onShowDetails(){
+    public void onShowDetails() {
 
         Intent intent = new Intent(this, DetailsListMeeting.class);
         startActivityForResult(intent, MEETING_DETAILS);

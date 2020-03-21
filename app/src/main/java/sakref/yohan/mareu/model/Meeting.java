@@ -2,9 +2,10 @@ package sakref.yohan.mareu.model;
 
 import android.graphics.drawable.Drawable;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Meeting {
+public class Meeting implements Serializable {
 
     /**
      * Subject of the meeting

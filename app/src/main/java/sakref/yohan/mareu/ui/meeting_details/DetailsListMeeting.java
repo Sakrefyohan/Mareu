@@ -47,7 +47,7 @@ import sakref.yohan.mareu.ui.meeting_list.ListMeetingActivity;
 public class DetailsListMeeting extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
 
-    private static final String CREATE_REUNION = "0";
+    public static final String CREATE_REUNION = "0";
 
     @BindView(R.id.details_subject)
     TextView mSubject;
@@ -67,8 +67,6 @@ public class DetailsListMeeting extends AppCompatActivity implements AdapterView
     @BindView(R.id.details_chipGroup)
     ChipGroup mChipGroup;
 
-    //TODO: Add check for email (check not empty) -- DONE
-
     final Calendar myCalendar = Calendar.getInstance();
     private CharSequence emailChip;
 
@@ -78,6 +76,7 @@ public class DetailsListMeeting extends AppCompatActivity implements AdapterView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meeting_details);
         ButterKnife.bind(this);
+        setTitle("");
 
         /*
          * Code for the spinner
@@ -112,11 +111,11 @@ public class DetailsListMeeting extends AppCompatActivity implements AdapterView
                         mPeople.setText("");
                     } else {
                         mPeople.setText(peopleNewChip);
-                        Toast.makeText(DetailsListMeeting.this, R.string.chip_invalid_mail + ":" + peopleNewChip, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(DetailsListMeeting.this, getText(R.string.chip_invalid_mail) + " : " + peopleNewChip, Toast.LENGTH_SHORT).show();
                     }
 
 
-                    //TODO: Delete the chip on click delete icon --DONE
+
                     peopleChip.setOnCloseIconClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -264,7 +263,6 @@ public class DetailsListMeeting extends AppCompatActivity implements AdapterView
 
             if (meetingSubject.equals("")) {
                 Toast.makeText(DetailsListMeeting.this, "Veuillez definir un sujet de reunion", Toast.LENGTH_SHORT).show();
-
             } else if (meetingDate.equals("")) {
                 Toast.makeText(DetailsListMeeting.this, "Veuillez definir une date de réunion", Toast.LENGTH_SHORT).show();
             } else if (meetingTime.equals("")) {
@@ -274,10 +272,9 @@ public class DetailsListMeeting extends AppCompatActivity implements AdapterView
             } else {
                 Room selectedRoom = new Room(roomRoom, roomColor);
                 Meeting meeting = new Meeting(meetingSubject, meetingDate, meetingTime, selectedRoom, Participants);
-                /* TODO : ASK FOR EXPLANATION */
-                createReunion.putExtra(CREATE_REUNION, (Parcelable) meeting);
+                createReunion.putExtra(CREATE_REUNION, meeting);
                 setResult(ListMeetingActivity.RESULT_OK, createReunion);
-                //TODO: Create the meeting -- Seems to be done (?)
+
             }
 
 

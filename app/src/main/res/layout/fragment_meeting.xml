@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
 
-    <!--TODO:Change Image to color XX DONE -->
+
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/reunion_color"
@@ -57,8 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:ellipsize="none"
-        android:maxLines="2"
+        android:singleLine="true"
         android:text="@string/reunion_mail_exemple"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
