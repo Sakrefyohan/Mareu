@@ -8,27 +8,7 @@
         android:icon="@drawable/ic_filter_list_black_24dp"
         android:title="@string/toolbar_menu_filter"
         app:showAsAction="ifRoom">
-        <menu>
-            <item
-                android:id="@+id/toolbar_menu_button_filter_item1"
-                android:title="@string/toolbar_menu_button_filter_item1"/>
 
-
-            <item
-                android:id="@+id/toolbar_menu_button_filter_item2"
-                android:title="@string/toolbar_menu_button_filter_item2"/>
-
-
-            <item
-                android:id="@+id/toolbar_menu_button_filter_item3"
-                android:title="@string/toolbar_menu_button_filter_item3"/>
-
-
-            <item
-                android:id="@+id/toolbar_menu_button_filter_item4"
-                android:title="@string/toolbar_menu_button_filter_item4"/>
-
-        </menu>
     </item>
 
 </menu>

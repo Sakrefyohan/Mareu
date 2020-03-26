@@ -28,28 +28,8 @@
         android:text="@string/reunion_subject_exemple"
         android:textStyle="bold"
         app:layout_constraintLeft_toRightOf="@id/reunion_color"
-        app:layout_constraintRight_toLeftOf="@id/reunion_time"
-        app:layout_constraintTop_toTopOf="@id/reunion_color" />
-
-    <TextView
-        android:id="@+id/reunion_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/reunion_time_exemple"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toRightOf="@id/reunion_subject"
-        app:layout_constraintRight_toLeftOf="@id/reunion_room"
-        app:layout_constraintTop_toTopOf="@id/reunion_subject" />
-
-    <TextView
-        android:id="@+id/reunion_room"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/reunion_room_exemple"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toRightOf="@id/reunion_time"
         app:layout_constraintRight_toLeftOf="@id/reunion_delete"
-        app:layout_constraintTop_toTopOf="@id/reunion_time" />
+        app:layout_constraintTop_toTopOf="@id/reunion_color" />
 
     <TextView
         android:id="@+id/reunion_participants"
@@ -73,7 +53,7 @@
         android:background="@null"
         android:contentDescription="@string/fragment_meeting"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/reunion_room"
+        app:layout_constraintLeft_toRightOf="@id/reunion_subject"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_delete_black_24dp" />

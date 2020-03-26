@@ -5,6 +5,7 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -31,6 +32,7 @@ import androidx.core.app.NotificationCompatSideChannelService;
 
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
+import com.google.android.material.tabs.TabLayout;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
@@ -45,7 +47,7 @@ import sakref.yohan.mareu.model.Room;
 import sakref.yohan.mareu.ui.meeting_list.ListMeetingActivity;
 
 public class DetailsListMeeting extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-
+    private static final String TAG = "DetailsListMeeting";
 
     public static final String CREATE_REUNION = "0";
 
@@ -206,50 +208,19 @@ public class DetailsListMeeting extends AppCompatActivity implements AdapterView
 
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.toolbar_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.toolbar_menu_button_filter_item1:
-                String text1 = getString(R.string.toolbar_menu_button_filter_item1);
-                Toast.makeText(this, text1, Toast.LENGTH_SHORT).show();
-                return true;
-            case R.id.toolbar_menu_button_filter_item2:
-                String text2 = getString(R.string.toolbar_menu_button_filter_item2);
-                Toast.makeText(this, text2, Toast.LENGTH_SHORT).show();
-                return true;
-            case R.id.toolbar_menu_button_filter_item3:
-                String text3 = getString(R.string.toolbar_menu_button_filter_item3);
-                Toast.makeText(this, text3, Toast.LENGTH_SHORT).show();
-                return true;
-            case R.id.toolbar_menu_button_filter_item4:
-                String text4 = getString(R.string.toolbar_menu_button_filter_item4);
-                Toast.makeText(this, text4, Toast.LENGTH_SHORT).show();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-
-        }
-
-
-    }
-
-
-    @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         String text = parent.getItemAtPosition(position).toString();
         Toast.makeText(parent.getContext(), text, Toast.LENGTH_SHORT);
     }
 
+
+
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
+
+
 
     @OnClick(R.id.create_reunion_button)
     public void onCreateReunion() {
@@ -274,6 +245,9 @@ public class DetailsListMeeting extends AppCompatActivity implements AdapterView
                 Meeting meeting = new Meeting(meetingSubject, meetingDate, meetingTime, selectedRoom, Participants);
                 createReunion.putExtra(CREATE_REUNION, meeting);
                 setResult(ListMeetingActivity.RESULT_OK, createReunion);
+                Log.d(TAG, "onCreateReunion() FINE");
+                finish();
+
 
             }
 

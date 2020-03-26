@@ -9,5 +9,6 @@
     </style>
 
     <style name="SecondAppTheme" parent="Theme.MaterialComponents.Light.Dialog.Alert"/>
+    <style name="ThirdAppTheme" parent="Theme.MaterialComponents.Light.Dialog.Alert"/>
 
 </resources>

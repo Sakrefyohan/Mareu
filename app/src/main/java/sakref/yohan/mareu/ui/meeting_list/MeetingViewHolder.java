@@ -17,14 +17,9 @@ import sakref.yohan.mareu.model.Meeting;
 
 public class MeetingViewHolder extends RecyclerView.ViewHolder {
 
+    /*Creating one Textview for all the subject + name + time*/
     @BindView(R.id.reunion_subject)
     TextView mReunionName;
-
-    @BindView(R.id.reunion_time)
-    TextView mReunionTime;
-
-    @BindView(R.id.reunion_room)
-    TextView mReunionRoom;
 
     @BindView(R.id.reunion_participants)
     TextView mReunionParticipants;
@@ -36,7 +31,6 @@ public class MeetingViewHolder extends RecyclerView.ViewHolder {
     ImageButton mReunionDelete;
 
 
-
     public MeetingViewHolder(@NonNull View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);
@@ -45,9 +39,7 @@ public class MeetingViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void bind(Meeting meeting) {
-        mReunionName.setText(meeting.getSubject());
-        mReunionTime.setText(meeting.getTime());
-        mReunionRoom.setText((CharSequence) meeting.getRoom());
+        mReunionName.setText(meeting.getSubject() + meeting.getTime() + meeting.getRoom());
         mReunionParticipants.setText(meeting.getParticipants().toString());
         mRoomColor.setColorFilter(ContextCompat.getColor(itemView.getContext(), meeting.getRoom().getColor()));
 

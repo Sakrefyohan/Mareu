@@ -2,7 +2,9 @@ package sakref.yohan.mareu.model;
 
 import android.graphics.drawable.Drawable;
 
-public class Room {
+import java.io.Serializable;
+
+public class Room implements Serializable {
 
     /** Subject of the meeting */
     private String name;

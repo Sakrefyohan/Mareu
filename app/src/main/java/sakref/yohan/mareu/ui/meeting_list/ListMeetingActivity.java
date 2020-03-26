@@ -1,20 +1,19 @@
 package sakref.yohan.mareu.ui.meeting_list;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
-import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.AbsListView;
-import android.widget.TextView;
-import android.widget.Toast;
 //import android.widget.Toolbar;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -31,7 +30,7 @@ import sakref.yohan.mareu.ui.meeting_details.DetailsListMeeting;
 import static sakref.yohan.mareu.ui.meeting_details.DetailsListMeeting.CREATE_REUNION;
 
 public class ListMeetingActivity extends AppCompatActivity {
-
+    private static final String TAG = "onCreate";
 
     private static final int MEETING_DETAILS = 1;
 
@@ -40,11 +39,27 @@ public class ListMeetingActivity extends AppCompatActivity {
 
     @BindView(R.id.activity_meeting_list_recyclerview)
     RecyclerView mRecyclerView;
+    /*
+    @BindView(R.id.reunion_subject)
+    TextView mSubject;
+
+    @BindView(R.id.reunion_color)
+    ImageView mReunionColor;
+
+    @BindView(R.id.reunion_delete)
+    ImageButton mDelete;
+
+    @BindView(R.id.reunion_participants)
+    TextView mParticipants;
+
+    */
+
+
 
     MeetingApiService mMeetingApiService;
 
     //TODO : initList() -- S'inspirer du projet precedent
-    //
+
 
 
     @Override
@@ -56,6 +71,28 @@ public class ListMeetingActivity extends AppCompatActivity {
 
 
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == MEETING_DETAILS) {
+            if (resultCode == ListMeetingActivity.RESULT_OK) {
+                Meeting meeting = (Meeting) data.getSerializableExtra(CREATE_REUNION);
+                mMeetingApiService.addMeeting(meeting);
+                // mSubject.setText(meeting.getSubject());
+                // mParticipants.setText(meeting.getParticipants().toString());
+                Log.d(TAG, "onActivityResult: Nom de la room = " + meeting.getRoom());
+                Log.d(TAG, "onActivityResult: Nom de la room = " + meeting.getRoom().getName());
+                Log.d(TAG, "onActivityResult: Couleur de la room = " + meeting.getRoom().getColor());
+                //mReunionColor.setBackgroundTintList(ContextCompat.getColorStateList(ListMeetingActivity.this, meeting.getRoom().getColor()));
+
+            }
+
+        }
+    }
+
+
+    //TODO : TRIE =/= FILTRE
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -65,38 +102,37 @@ public class ListMeetingActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == MEETING_DETAILS) {
-            if (resultCode == ListMeetingActivity.RESULT_OK) {
-                Meeting result = (Meeting) data.getSerializableExtra(CREATE_REUNION);
-                mMeetingApiService.addMeeting(result);
-            }
-
-        }
-    }
-
-    //TODO : TRIE =/= FILTRE
-    @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.toolbar_menu_button_filter_item1:
-                String text1 = getString(R.string.toolbar_menu_button_filter_item1);
-                Toast.makeText(this, text1, Toast.LENGTH_SHORT).show();
+            case R.id.toolbar_menu_button_filter:
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                // Get the layout inflater
+                LayoutInflater inflater = this.getLayoutInflater();
+
+                // Inflate and set the layout for the dialog
+                // Pass null as the parent view because its going in the dialog layout
+                builder.setView(inflater.inflate(R.layout.dialog_filters, null))
+                        // Add action buttons
+                        .setPositiveButton("Filtrer", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int id) {
+                                // sign in the user ...
+
+                            }
+                        })
+                        .setNegativeButton("Annuler", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                //Cancel the activity
+
+                            }
+                        });
+                    //startActivity(new Intent(this, FiltersDialogFragment.class));
+
+                builder.show();
+
                 return true;
-            case R.id.toolbar_menu_button_filter_item2:
-                String text2 = getString(R.string.toolbar_menu_button_filter_item2);
-                Toast.makeText(this, text2, Toast.LENGTH_SHORT).show();
-                return true;
-            case R.id.toolbar_menu_button_filter_item3:
-                String text3 = getString(R.string.toolbar_menu_button_filter_item3);
-                Toast.makeText(this, text3, Toast.LENGTH_SHORT).show();
-                return true;
-            case R.id.toolbar_menu_button_filter_item4:
-                String text4 = getString(R.string.toolbar_menu_button_filter_item4);
-                Toast.makeText(this, text4, Toast.LENGTH_SHORT).show();
-                return true;
+
+
             default:
                 return super.onOptionsItemSelected(item);
 
