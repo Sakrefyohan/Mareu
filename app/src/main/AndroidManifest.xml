@@ -23,9 +23,7 @@
             android:theme="@style/SecondAppTheme">
 
         </activity>
-        <activity android:name=".ui.dialog.FiltersDialogFragment"
-            android:theme="@style/ThirdAppTheme">
-        </activity>
+
     </application>
 
 </manifest>

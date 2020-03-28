@@ -9,11 +9,13 @@ public interface MeetingApiService {
 
     List<Meeting> getMeeting();
 
+
+
     void addMeeting (Meeting meeting);
 
     void deleteMeeting (Meeting meeting);
 
-    List<Meeting> getFilteredMeeting(String date, String room);
+    List<Meeting> getFilteredMeeting(Room room, String date);
 
     List<Room> getRoom();
 

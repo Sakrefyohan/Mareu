@@ -3,6 +3,8 @@ package sakref.yohan.mareu.ui.meeting_list;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
@@ -14,9 +16,13 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.ViewGroup;
 //import android.widget.Toolbar;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -39,24 +45,10 @@ public class ListMeetingActivity extends AppCompatActivity {
 
     @BindView(R.id.activity_meeting_list_recyclerview)
     RecyclerView mRecyclerView;
-    /*
-    @BindView(R.id.reunion_subject)
-    TextView mSubject;
-
-    @BindView(R.id.reunion_color)
-    ImageView mReunionColor;
-
-    @BindView(R.id.reunion_delete)
-    ImageButton mDelete;
-
-    @BindView(R.id.reunion_participants)
-    TextView mParticipants;
-
-    */
-
-
 
     MeetingApiService mMeetingApiService;
+
+    private List<Meeting> mMeetingList;
 
     //TODO : initList() -- S'inspirer du projet precedent
 
@@ -67,10 +59,18 @@ public class ListMeetingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meeting_list);
         ButterKnife.bind(this);
+        mMeetingList = new ArrayList<>();
         mMeetingApiService = DI.getNewInstanceApiService();
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.setAdapter(new MeetingAdapter(mMeetingList));
+     }
 
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //mMeetingAdapter.updateData(mMeetingList);
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -79,12 +79,11 @@ public class ListMeetingActivity extends AppCompatActivity {
             if (resultCode == ListMeetingActivity.RESULT_OK) {
                 Meeting meeting = (Meeting) data.getSerializableExtra(CREATE_REUNION);
                 mMeetingApiService.addMeeting(meeting);
-                // mSubject.setText(meeting.getSubject());
-                // mParticipants.setText(meeting.getParticipants().toString());
+                mMeetingList.add(meeting);
                 Log.d(TAG, "onActivityResult: Nom de la room = " + meeting.getRoom());
                 Log.d(TAG, "onActivityResult: Nom de la room = " + meeting.getRoom().getName());
                 Log.d(TAG, "onActivityResult: Couleur de la room = " + meeting.getRoom().getColor());
-                //mReunionColor.setBackgroundTintList(ContextCompat.getColorStateList(ListMeetingActivity.this, meeting.getRoom().getColor()));
+
 
             }
 
@@ -126,7 +125,6 @@ public class ListMeetingActivity extends AppCompatActivity {
 
                             }
                         });
-                    //startActivity(new Intent(this, FiltersDialogFragment.class));
 
                 builder.show();
 

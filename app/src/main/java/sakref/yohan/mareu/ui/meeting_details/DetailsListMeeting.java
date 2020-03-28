@@ -213,14 +213,10 @@ public class DetailsListMeeting extends AppCompatActivity implements AdapterView
         Toast.makeText(parent.getContext(), text, Toast.LENGTH_SHORT);
     }
 
-
-
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
-
-
 
     @OnClick(R.id.create_reunion_button)
     public void onCreateReunion() {
@@ -247,10 +243,6 @@ public class DetailsListMeeting extends AppCompatActivity implements AdapterView
                 setResult(ListMeetingActivity.RESULT_OK, createReunion);
                 Log.d(TAG, "onCreateReunion() FINE");
                 finish();
-
-
             }
-
-
     }
 }

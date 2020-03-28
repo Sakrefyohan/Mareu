@@ -4,8 +4,10 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModel;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import sakref.yohan.mareu.R;
@@ -26,6 +28,23 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingViewHolder> {
         return new MeetingViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_meeting, parent, false));
     }
 
+    public void updateData(List<Meeting> viewModels){
+        mMeetingList.clear();
+        mMeetingList.addAll(viewModels);
+        notifyDataSetChanged();
+
+    }
+
+    public void addItem(int position, Meeting viewModels){
+        mMeetingList.add(position, viewModels);
+        notifyItemInserted(position);
+    }
+
+    public void removeItem(int position){
+        mMeetingList.remove(position);
+        notifyItemRemoved(position);
+    }
+
     @Override
     public void onBindViewHolder(@NonNull MeetingViewHolder holder, int position) {
 
@@ -37,6 +56,8 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingViewHolder> {
     public int getItemCount() {
         return mMeetingList.size();
     }
+
+
 
 
 }
