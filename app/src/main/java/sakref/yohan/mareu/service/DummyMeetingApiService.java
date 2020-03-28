@@ -1,5 +1,6 @@
 package sakref.yohan.mareu.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import sakref.yohan.mareu.model.Meeting;
@@ -7,27 +8,32 @@ import sakref.yohan.mareu.model.Room;
 
 public class DummyMeetingApiService implements MeetingApiService {
 
-
+    private List<Meeting> mMeetingList = new ArrayList<>();
 
     @Override
     public List<Meeting> getMeeting() {
-        return null;
+        return mMeetingList;
     }
 
     @Override
     public void addMeeting(Meeting meeting) {
-
+        mMeetingList.add(meeting);
     }
 
     @Override
     public void deleteMeeting(Meeting meeting) {
-
+        mMeetingList.remove(meeting);
     }
 
     @Override
-    public List<Meeting> getFilteredMeeting(String date, String room) {
+    public List<Meeting> getFilteredMeeting(Room room, String date) {
+
+        //TODO : Create the filter
+        if ()
+
         return null;
     }
+
 
     @Override
     public List<Room> getRoom() {

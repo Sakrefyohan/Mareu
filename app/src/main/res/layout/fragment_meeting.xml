@@ -14,7 +14,7 @@
         android:layout_height="50dp"
         android:layout_marginStart="10dp"
         android:background="@drawable/radius"
-        android:backgroundTint="@color/colorAccent"
+
         android:contentDescription="@string/fragment_meeting"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"

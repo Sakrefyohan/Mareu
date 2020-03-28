@@ -1,5 +1,6 @@
 package sakref.yohan.mareu.ui.meeting_list;
 
+import android.content.res.ColorStateList;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -39,9 +40,11 @@ public class MeetingViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void bind(Meeting meeting) {
-        mReunionName.setText(meeting.getSubject() + meeting.getTime() + meeting.getRoom());
+        mReunionName.setText(meeting.getSubject()+ " - " + meeting.getTime() + " - " + meeting.getRoom().getName());
+        //TODO : List in string
         mReunionParticipants.setText(meeting.getParticipants().toString());
-        mRoomColor.setColorFilter(ContextCompat.getColor(itemView.getContext(), meeting.getRoom().getColor()));
+        mRoomColor.setBackgroundTintList(ColorStateList.valueOf(meeting.getRoom().getColor()));
+
 
     }
 }

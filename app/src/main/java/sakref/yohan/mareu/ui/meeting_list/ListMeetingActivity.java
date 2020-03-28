@@ -31,6 +31,7 @@ import sakref.yohan.mareu.R;
 import sakref.yohan.mareu.di.DI;
 import sakref.yohan.mareu.model.Meeting;
 import sakref.yohan.mareu.service.MeetingApiService;
+import sakref.yohan.mareu.ui.dialog.FilterDialogFragment;
 import sakref.yohan.mareu.ui.meeting_details.DetailsListMeeting;
 
 import static sakref.yohan.mareu.ui.meeting_details.DetailsListMeeting.CREATE_REUNION;
@@ -48,7 +49,9 @@ public class ListMeetingActivity extends AppCompatActivity {
 
     MeetingApiService mMeetingApiService;
 
-    private List<Meeting> mMeetingList;
+    MeetingAdapter mMeetingAdapter;
+
+
 
     //TODO : initList() -- S'inspirer du projet precedent
 
@@ -59,16 +62,18 @@ public class ListMeetingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meeting_list);
         ButterKnife.bind(this);
-        mMeetingList = new ArrayList<>();
+        Log.d(TAG, "onCreate: ");
         mMeetingApiService = DI.getNewInstanceApiService();
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mRecyclerView.setAdapter(new MeetingAdapter(mMeetingList));
+        mMeetingAdapter = new MeetingAdapter(mMeetingApiService.getMeeting());
+        mRecyclerView.setAdapter(mMeetingAdapter);
      }
 
     @Override
     protected void onResume() {
         super.onResume();
-        //mMeetingAdapter.updateData(mMeetingList);
+        mMeetingAdapter.updateData(mMeetingApiService.getMeeting());
+        Log.d(TAG, "onResume: " + mMeetingApiService.getMeeting().size());
     }
 
     @Override
@@ -79,10 +84,10 @@ public class ListMeetingActivity extends AppCompatActivity {
             if (resultCode == ListMeetingActivity.RESULT_OK) {
                 Meeting meeting = (Meeting) data.getSerializableExtra(CREATE_REUNION);
                 mMeetingApiService.addMeeting(meeting);
-                mMeetingList.add(meeting);
                 Log.d(TAG, "onActivityResult: Nom de la room = " + meeting.getRoom());
                 Log.d(TAG, "onActivityResult: Nom de la room = " + meeting.getRoom().getName());
                 Log.d(TAG, "onActivityResult: Couleur de la room = " + meeting.getRoom().getColor());
+                Log.d(TAG, "onActivityResult : " + mMeetingApiService.getMeeting().size());
 
 
             }
@@ -104,29 +109,9 @@ public class ListMeetingActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.toolbar_menu_button_filter:
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                // Get the layout inflater
-                LayoutInflater inflater = this.getLayoutInflater();
+                FilterDialogFragment mFilterDialogFragment = new FilterDialogFragment();
 
-                // Inflate and set the layout for the dialog
-                // Pass null as the parent view because its going in the dialog layout
-                builder.setView(inflater.inflate(R.layout.dialog_filters, null))
-                        // Add action buttons
-                        .setPositiveButton("Filtrer", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int id) {
-                                // sign in the user ...
-
-                            }
-                        })
-                        .setNegativeButton("Annuler", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                //Cancel the activity
-
-                            }
-                        });
-
-                builder.show();
+                mFilterDialogFragment.show(getSupportFragmentManager(), "Filter");
 
                 return true;
 

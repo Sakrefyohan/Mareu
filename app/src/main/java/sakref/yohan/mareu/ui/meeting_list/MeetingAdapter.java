@@ -29,15 +29,9 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingViewHolder> {
     }
 
     public void updateData(List<Meeting> viewModels){
-        mMeetingList.clear();
-        mMeetingList.addAll(viewModels);
+        mMeetingList = viewModels;
         notifyDataSetChanged();
 
-    }
-
-    public void addItem(int position, Meeting viewModels){
-        mMeetingList.add(position, viewModels);
-        notifyItemInserted(position);
     }
 
     public void removeItem(int position){
