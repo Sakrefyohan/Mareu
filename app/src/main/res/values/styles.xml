@@ -8,7 +8,13 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="SecondAppTheme" parent="Theme.MaterialComponents.Light.Dialog.Alert"/>
-    <style name="ThirdAppTheme" parent="Theme.MaterialComponents.Light.Dialog.Alert"/>
+    <style name="SecondAppTheme" parent="Theme.MaterialComponents.Light.Dialog.Alert">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+    </style>
+
+    <style name="ThirdAppTheme" parent="Theme.MaterialComponents"/>
 
 </resources>

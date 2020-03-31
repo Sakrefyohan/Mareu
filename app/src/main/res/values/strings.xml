@@ -12,7 +12,7 @@
     <!--String to fill the DetailsListMeeting activity-->
    <string name="activity_meeting_details_activity">Nouvelle Réunion</string>
    <string name="activity_meeting_details_subject">Sujet de la réunion</string>
-   <string name="activity_meeting_details_date">Date : 02/03/1998</string>
+   <string name="activity_meeting_details_date">Date de la reunion</string>
    <string name="activity_meeting_details_time">Heure de la reunion</string>
    <string name="activity_meeting_details_people">Liste des participants</string>
    <string name="activity_meeting_details_button">Créer une réunion</string>

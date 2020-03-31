@@ -20,7 +20,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.meeting_details.DetailsListMeeting"
-            android:theme="@style/SecondAppTheme">
+            android:theme="@style/SecondAppTheme"
+            >
 
         </activity>
 

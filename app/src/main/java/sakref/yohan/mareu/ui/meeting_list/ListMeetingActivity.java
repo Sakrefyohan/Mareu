@@ -51,12 +51,6 @@ public class ListMeetingActivity extends AppCompatActivity {
 
     MeetingAdapter mMeetingAdapter;
 
-
-
-    //TODO : initList() -- S'inspirer du projet precedent
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,13 +82,9 @@ public class ListMeetingActivity extends AppCompatActivity {
                 Log.d(TAG, "onActivityResult: Nom de la room = " + meeting.getRoom().getName());
                 Log.d(TAG, "onActivityResult: Couleur de la room = " + meeting.getRoom().getColor());
                 Log.d(TAG, "onActivityResult : " + mMeetingApiService.getMeeting().size());
-
-
             }
-
         }
     }
-
 
     //TODO : TRIE =/= FILTRE
 
@@ -110,25 +100,16 @@ public class ListMeetingActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.toolbar_menu_button_filter:
                 FilterDialogFragment mFilterDialogFragment = new FilterDialogFragment();
-
                 mFilterDialogFragment.show(getSupportFragmentManager(), "Filter");
-
                 return true;
-
-
             default:
                 return super.onOptionsItemSelected(item);
-
         }
-
-
     }
 
     @OnClick(R.id.activity_meeting_list_add_meeting)
     public void onShowDetails() {
-
         Intent intent = new Intent(this, DetailsListMeeting.class);
         startActivityForResult(intent, MEETING_DETAILS);
-
     }
 }

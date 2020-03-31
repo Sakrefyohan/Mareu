@@ -1,12 +1,15 @@
 package sakref.yohan.mareu.ui.meeting_list;
 
 import android.content.res.ColorStateList;
+import android.os.Build;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,8 +18,12 @@ import butterknife.ButterKnife;
 import sakref.yohan.mareu.R;
 import sakref.yohan.mareu.model.Meeting;
 
+import static android.content.ContentValues.TAG;
+
 
 public class MeetingViewHolder extends RecyclerView.ViewHolder {
+
+    private static final String TAG = "MeetingViewHolder";
 
     /*Creating one Textview for all the subject + name + time*/
     @BindView(R.id.reunion_subject)
@@ -39,12 +46,21 @@ public class MeetingViewHolder extends RecyclerView.ViewHolder {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void bind(Meeting meeting) {
-        mReunionName.setText(meeting.getSubject()+ " - " + meeting.getTime() + " - " + meeting.getRoom().getName());
-        //TODO : List in string
-        mReunionParticipants.setText(meeting.getParticipants().toString());
+        mReunionName.setText(meeting.getSubject().substring(0,27)+"..."+ " - " + meeting.getTime() + " - " + meeting.getRoom().getName());
+        //TODO : List in string -- Done
+        String delim= " ; ";
+        String listParticipant = String.join(delim, meeting.getParticipants());
+        Log.d(TAG, "bind: meeting.getParticipants = " + meeting.getParticipants().size());
+        Log.d(TAG, "bind: meeting.getParticipants = " + listParticipant);
+        Log.d(TAG, "bind: meeting.getParticipants = " + meeting.getParticipants().toString());
+
+        mReunionParticipants.setText(listParticipant);
+
         mRoomColor.setBackgroundTintList(ColorStateList.valueOf(meeting.getRoom().getColor()));
 
 
     }
+
 }

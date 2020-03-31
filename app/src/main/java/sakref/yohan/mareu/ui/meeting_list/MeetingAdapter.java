@@ -1,6 +1,7 @@
 package sakref.yohan.mareu.ui.meeting_list;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -43,6 +44,13 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingViewHolder> {
     public void onBindViewHolder(@NonNull MeetingViewHolder holder, int position) {
 
         holder.bind(mMeetingList.get(position));
+
+        holder.mReunionDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                removeItem(position);
+            }
+        });
 
     }
 

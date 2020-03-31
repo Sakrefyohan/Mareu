@@ -29,7 +29,7 @@ public class DummyMeetingApiService implements MeetingApiService {
     public List<Meeting> getFilteredMeeting(Room room, String date) {
 
         //TODO : Create the filter
-        if ()
+        //if ()
 
         return null;
     }
