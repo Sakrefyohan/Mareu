@@ -48,16 +48,14 @@ public class MeetingViewHolder extends RecyclerView.ViewHolder {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void bind(Meeting meeting) {
-        mReunionName.setText(meeting.getSubject().substring(0,27)+"..."+ " - " + meeting.getTime() + " - " + meeting.getRoom().getName());
+        mReunionName.setText(meeting.getSubject() +"..."+ " - " + meeting.getTime() + " - " + meeting.getRoom().getName());
         //TODO : List in string -- Done
         String delim= " ; ";
         String listParticipant = String.join(delim, meeting.getParticipants());
         Log.d(TAG, "bind: meeting.getParticipants = " + meeting.getParticipants().size());
         Log.d(TAG, "bind: meeting.getParticipants = " + listParticipant);
         Log.d(TAG, "bind: meeting.getParticipants = " + meeting.getParticipants().toString());
-
         mReunionParticipants.setText(listParticipant);
-
         mRoomColor.setBackgroundTintList(ColorStateList.valueOf(meeting.getRoom().getColor()));
 
 

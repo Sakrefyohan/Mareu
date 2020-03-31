@@ -152,7 +152,7 @@ public class DetailsListMeeting extends AppCompatActivity implements AdapterView
             @Override
             public void onClick(View v) {
                 Calendar mCurrentTime = Calendar.getInstance();
-                int hour = mCurrentTime.get(Calendar.HOUR_OF_DAY);
+                int hour = mCurrentTime.get(Calendar.HOUR_OF_DAY) ;
                 int minute = mCurrentTime.get(Calendar.MINUTE);
 
                 TimePickerDialog mTimePickerDialogue = new TimePickerDialog(DetailsListMeeting.this, new TimePickerDialog.OnTimeSetListener() {
@@ -161,7 +161,7 @@ public class DetailsListMeeting extends AppCompatActivity implements AdapterView
                         mTimePicker.setText(selectedHour + " : " + selectedMinute);
                     }
                 }, hour, minute, true);
-                mTimePickerDialogue.setTitle("Select Time");
+                mTimePickerDialogue.setTitle(getString(R.string.Picker_title_hour));
                 mTimePickerDialogue.show();
             }
         });

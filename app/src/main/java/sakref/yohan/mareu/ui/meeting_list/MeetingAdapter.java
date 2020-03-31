@@ -1,5 +1,6 @@
 package sakref.yohan.mareu.ui.meeting_list;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import sakref.yohan.mareu.R;
 import sakref.yohan.mareu.model.Meeting;
 
 public class MeetingAdapter extends RecyclerView.Adapter<MeetingViewHolder> {
+    private static final String TAG = "MeetingAdapter";
 
     private List<Meeting> mMeetingList;
 
@@ -38,6 +40,7 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingViewHolder> {
     public void removeItem(int position){
         mMeetingList.remove(position);
         notifyItemRemoved(position);
+        Log.d(TAG, "removeItem() called with: position = [" + position + "]");
     }
 
     @Override

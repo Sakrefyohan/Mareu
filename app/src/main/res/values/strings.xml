@@ -28,6 +28,7 @@
     <string name="toolbar_menu_button_filter">filtre</string>
     <string name="filtrer_par_date">Filtrer par date</string>
     <string name="filtrer_par_salle">Filtrer par Salle</string>
+    <string name="Picker_title_hour">Selectionnez L\'heure</string>
 
 
     <!--String to fill the spinner-->
