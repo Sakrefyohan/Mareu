@@ -9,6 +9,7 @@ import sakref.yohan.mareu.model.Room;
 public class DummyMeetingApiService implements MeetingApiService {
 
     private List<Meeting> mMeetingList = new ArrayList<>();
+    private List<Room> mRoomList = new ArrayList<>();
 
     @Override
     public List<Meeting> getMeeting() {
@@ -37,6 +38,6 @@ public class DummyMeetingApiService implements MeetingApiService {
 
     @Override
     public List<Room> getRoom() {
-        return null;
+        return mRoomList;
     }
 }

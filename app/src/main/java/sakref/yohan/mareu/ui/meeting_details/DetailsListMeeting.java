@@ -159,6 +159,7 @@ public class DetailsListMeeting extends AppCompatActivity implements AdapterView
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                         mTimePicker.setText(selectedHour + " : " + selectedMinute);
+                        //TODO : Concatener avec un zero si >10
                     }
                 }, hour, minute, true);
                 mTimePickerDialogue.setTitle(getString(R.string.Picker_title_hour));

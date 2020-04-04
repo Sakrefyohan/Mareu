@@ -6,7 +6,6 @@
     android:orientation="vertical">
 
 
-
         <ImageView
             android:id="@+id/dialog_image"
             android:layout_width="match_parent"
@@ -18,6 +17,11 @@
             app:layout_constraintBottom_toTopOf="@+id/dialog_filter_date"
             app:layout_constraintTop_toBottomOf="parent" />
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
         <TextView
             android:id="@+id/dialog_filter_date"
             android:layout_width="match_parent"
@@ -28,14 +32,33 @@
             app:layout_constraintBottom_toTopOf="@id/dialogue_filter_room"
             app:layout_constraintTop_toBottomOf="@id/dialog_image" />
 
-        <TextView
-            android:id="@+id/dialogue_filter_room"
+        <EditText
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fontFamily="sans-serif"
-            android:text="@string/filtrer_par_salle"
-            android:textAlignment="center"
-            android:textSize="30sp"
-            app:layout_constraintTop_toBottomOf="@id/dialog_filter_date" />
+            android:layout_height="match_parent"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+            <TextView
+                android:id="@+id/dialogue_filter_room"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:text="@string/filtrer_par_salle"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                app:layout_constraintTop_toBottomOf="@id/dialog_filter_date" />
+
+            <Spinner
+                android:id="@+id/filter_spinner_room"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+     </LinearLayout>
 
 </LinearLayout>

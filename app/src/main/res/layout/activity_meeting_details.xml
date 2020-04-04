@@ -162,8 +162,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/details_chipGroup"
             app:layout_constraintVertical_weight="1"
-            android:textAlignment="center"
-            >
+            android:textAlignment="center">
         </Spinner>
 
         <Button
