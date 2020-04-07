@@ -24,6 +24,7 @@ import sakref.yohan.mareu.service.DummyMeetingApiService;
 
 public class FilterDialogFragment extends DialogFragment{
 
+
     public interface NoticeDialogListener {
         public void onDialogPositiveClick(String date, String salle);
     }
@@ -68,6 +69,7 @@ public class FilterDialogFragment extends DialogFragment{
         // Inflate and set the layout for the dialog
         // Pass null as the parent view because its going in the dialog layout
         builder.setView(mView)
+                .setTitle("Filtre de reunion")
                 // Add action buttons
                 .setPositiveButton("Filtrer", new DialogInterface.OnClickListener() {
                     @Override
