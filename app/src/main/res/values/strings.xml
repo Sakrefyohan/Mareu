@@ -9,7 +9,7 @@
     <string name="toolbar_menu_button_filter_item3">Trier par salle</string>
     <string name="toolbar_menu_button_filter_item4">Trier par date</string>
 
-    <!--String to fill the DetailsListMeeting activity-->
+    <!--String to fill the DetailsListMeetingActivity activity-->
    <string name="activity_meeting_details_activity">Nouvelle Réunion</string>
    <string name="activity_meeting_details_subject">Sujet de la réunion</string>
    <string name="activity_meeting_details_date">Date de la reunion</string>
@@ -29,6 +29,7 @@
     <string name="filtrer_par_date">Filtrer par date</string>
     <string name="filtrer_par_salle">Filtrer par Salle</string>
     <string name="Picker_title_hour">Selectionnez L\'heure</string>
+    <string name="filter_hint_date_text">Cliquer pour choisir une date</string>
 
 
     <!--String to fill the spinner-->

@@ -5,60 +5,38 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-
-        <ImageView
-            android:id="@+id/dialog_image"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#0057C3"
-            android:contentDescription="@string/app_name"
-            android:scaleType="center"
-            android:src="@drawable/ic_filter_list_black_24dp"
-            app:layout_constraintBottom_toTopOf="@+id/dialog_filter_date"
-            app:layout_constraintTop_toBottomOf="parent" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:inputType="text"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintVertical_weight="1"
+        android:layout_marginBottom="10dp"
+        android:hint="@string/filter_hint_date_text"
+        app:counterEnabled="true"
+        app:counterMaxLength="30"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-        <TextView
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/dialog_filter_date"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/filtrer_par_date"
-            android:textAlignment="center"
-            android:textSize="30sp"
-            app:layout_constraintBottom_toTopOf="@id/dialogue_filter_room"
-            app:layout_constraintTop_toBottomOf="@id/dialog_image" />
+            android:layout_height="match_parent">
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+        </com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
 
-
-    </LinearLayout>
-
-    <LinearLayout
-         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-            <TextView
-                android:id="@+id/dialogue_filter_room"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif"
-                android:text="@string/filtrer_par_salle"
-                android:textAlignment="center"
-                android:textSize="30sp"
-                app:layout_constraintTop_toBottomOf="@id/dialog_filter_date" />
-
-            <Spinner
-                android:id="@+id/filter_spinner_room"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Trie par salle"/>
 
 
-     </LinearLayout>
+    <Spinner
+        android:id="@+id/filter_spinner_room"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:textAlignment="center" />
 
 </LinearLayout>
+

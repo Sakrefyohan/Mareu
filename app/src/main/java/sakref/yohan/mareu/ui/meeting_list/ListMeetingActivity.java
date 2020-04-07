@@ -1,28 +1,20 @@
 package sakref.yohan.mareu.ui.meeting_list;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.ViewGroup;
 //import android.widget.Toolbar;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,9 +24,9 @@ import sakref.yohan.mareu.di.DI;
 import sakref.yohan.mareu.model.Meeting;
 import sakref.yohan.mareu.service.MeetingApiService;
 import sakref.yohan.mareu.ui.dialog.FilterDialogFragment;
-import sakref.yohan.mareu.ui.meeting_details.DetailsListMeeting;
+import sakref.yohan.mareu.ui.meeting_details.DetailsListMeetingActivity;
 
-import static sakref.yohan.mareu.ui.meeting_details.DetailsListMeeting.CREATE_REUNION;
+import static sakref.yohan.mareu.ui.meeting_details.DetailsListMeetingActivity.CREATE_REUNION;
 
 public class ListMeetingActivity extends AppCompatActivity implements FilterDialogFragment.NoticeDialogListener {
     private static final String TAG = "onCreate";
@@ -109,7 +101,7 @@ public class ListMeetingActivity extends AppCompatActivity implements FilterDial
 
     @OnClick(R.id.activity_meeting_list_add_meeting)
     public void onShowDetails() {
-        Intent intent = new Intent(this, DetailsListMeeting.class);
+        Intent intent = new Intent(this, DetailsListMeetingActivity.class);
         startActivityForResult(intent, MEETING_DETAILS);
     }
 

@@ -22,7 +22,6 @@ import sakref.yohan.mareu.R;
 import sakref.yohan.mareu.model.Room;
 import sakref.yohan.mareu.service.DummyMeetingApiService;
 
-
 public class FilterDialogFragment extends DialogFragment{
 
     public interface NoticeDialogListener {
@@ -30,6 +29,8 @@ public class FilterDialogFragment extends DialogFragment{
     }
 
     NoticeDialogListener listener;
+
+
 
     @Override
     public void onAttach(Context context) {
@@ -44,6 +45,7 @@ public class FilterDialogFragment extends DialogFragment{
                     + " must implement NoticeDialogListener");
         }
     }
+
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -71,7 +73,7 @@ public class FilterDialogFragment extends DialogFragment{
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         //TODO : implementer la date et la salle de ma vue
-                       //listener.onDialogPositiveClick(date, salle);
+                        //listener.onDialogPositiveClick(date, salle);
                     }
                 })
                 .setNegativeButton("Annuler", new DialogInterface.OnClickListener() {

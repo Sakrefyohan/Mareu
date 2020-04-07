@@ -3,7 +3,6 @@ package sakref.yohan.mareu.ui.meeting_details;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
-import android.graphics.Outline;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -11,9 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -39,8 +36,8 @@ import sakref.yohan.mareu.model.Meeting;
 import sakref.yohan.mareu.model.Room;
 import sakref.yohan.mareu.ui.meeting_list.ListMeetingActivity;
 
-public class DetailsListMeeting extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-    private static final String TAG = "DetailsListMeeting";
+public class DetailsListMeetingActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+    private static final String TAG = "DetailsListMeetingActivity";
 
     public static final String CREATE_REUNION = "0";
 
@@ -101,7 +98,7 @@ public class DetailsListMeeting extends AppCompatActivity implements AdapterView
                         (keyCode == KeyEvent.KEYCODE_ENTER)) {
 
                     String peopleNewChip = mPeople.getText().toString();
-                    Chip peopleChip = new Chip(DetailsListMeeting.this);
+                    Chip peopleChip = new Chip(DetailsListMeetingActivity.this);
 
                     if (isValid(peopleNewChip)) {
                         peopleChip.setText(peopleNewChip);
@@ -113,7 +110,7 @@ public class DetailsListMeeting extends AppCompatActivity implements AdapterView
                         mPeople.setText("");
                     } else {
                         mPeople.setText(peopleNewChip);
-                        Toast.makeText(DetailsListMeeting.this, getText(R.string.chip_invalid_mail) + " : " + peopleNewChip, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(DetailsListMeetingActivity.this, getText(R.string.chip_invalid_mail) + " : " + peopleNewChip, Toast.LENGTH_SHORT).show();
                     }
 
                     peopleChip.setOnCloseIconClickListener(new View.OnClickListener() {
@@ -155,7 +152,7 @@ public class DetailsListMeeting extends AppCompatActivity implements AdapterView
                 int hour = mCurrentTime.get(Calendar.HOUR_OF_DAY) ;
                 int minute = mCurrentTime.get(Calendar.MINUTE);
 
-                TimePickerDialog mTimePickerDialogue = new TimePickerDialog(DetailsListMeeting.this, new TimePickerDialog.OnTimeSetListener() {
+                TimePickerDialog mTimePickerDialogue = new TimePickerDialog(DetailsListMeetingActivity.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                         mTimePicker.setText(selectedHour + " : " + selectedMinute);
@@ -189,7 +186,7 @@ public class DetailsListMeeting extends AppCompatActivity implements AdapterView
             @Override
             public void onClick(View v) {
                 // Auto-generated method stub
-                new DatePickerDialog(DetailsListMeeting.this, date, myCalendar
+                new DatePickerDialog(DetailsListMeetingActivity.this, date, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
@@ -226,13 +223,13 @@ public class DetailsListMeeting extends AppCompatActivity implements AdapterView
         int roomColor = getResources().getIntArray(R.array.RoomColor)[mSpinner.getSelectedItemPosition()];
 
         if (meetingSubject.equals("")) {
-            Toast.makeText(DetailsListMeeting.this, "Veuillez definir un sujet de reunion", Toast.LENGTH_SHORT).show();
+            Toast.makeText(DetailsListMeetingActivity.this, "Veuillez definir un sujet de reunion", Toast.LENGTH_SHORT).show();
         } else if (meetingDate.equals("")) {
-            Toast.makeText(DetailsListMeeting.this, "Veuillez definir une date de réunion", Toast.LENGTH_SHORT).show();
+            Toast.makeText(DetailsListMeetingActivity.this, "Veuillez definir une date de réunion", Toast.LENGTH_SHORT).show();
         } else if (meetingTime.equals("")) {
-            Toast.makeText(DetailsListMeeting.this, "Veuillez definir une heure de réunion", Toast.LENGTH_SHORT).show();
+            Toast.makeText(DetailsListMeetingActivity.this, "Veuillez definir une heure de réunion", Toast.LENGTH_SHORT).show();
         } else if (Participants.isEmpty()) {
-            Toast.makeText(DetailsListMeeting.this, "Veuillez remplir des participants", Toast.LENGTH_SHORT).show();
+            Toast.makeText(DetailsListMeetingActivity.this, "Veuillez remplir des participants", Toast.LENGTH_SHORT).show();
         } else {
             Room selectedRoom = new Room(roomRoom, roomColor);
             Meeting meeting = new Meeting(meetingSubject, meetingDate, meetingTime, selectedRoom, Participants);
