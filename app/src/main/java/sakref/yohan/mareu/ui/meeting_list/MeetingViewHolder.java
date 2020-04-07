@@ -2,6 +2,7 @@ package sakref.yohan.mareu.ui.meeting_list;
 
 import android.content.res.ColorStateList;
 import android.os.Build;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
@@ -42,16 +43,12 @@ public class MeetingViewHolder extends RecyclerView.ViewHolder {
     public MeetingViewHolder(@NonNull View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);
-
-
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     public void bind(Meeting meeting) {
         mReunionName.setText(meeting.getSubject() +"..."+ " - " + meeting.getTime() + " - " + meeting.getRoom().getName());
-        //TODO : List in string -- Done
         String delim= " ; ";
-        String listParticipant = String.join(delim, meeting.getParticipants());
+        String listParticipant = TextUtils.join(delim, meeting.getParticipants());
         Log.d(TAG, "bind: meeting.getParticipants = " + meeting.getParticipants().size());
         Log.d(TAG, "bind: meeting.getParticipants = " + listParticipant);
         Log.d(TAG, "bind: meeting.getParticipants = " + meeting.getParticipants().toString());

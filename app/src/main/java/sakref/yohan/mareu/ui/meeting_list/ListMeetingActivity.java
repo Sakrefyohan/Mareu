@@ -36,7 +36,7 @@ import sakref.yohan.mareu.ui.meeting_details.DetailsListMeeting;
 
 import static sakref.yohan.mareu.ui.meeting_details.DetailsListMeeting.CREATE_REUNION;
 
-public class ListMeetingActivity extends AppCompatActivity {
+public class ListMeetingActivity extends AppCompatActivity implements FilterDialogFragment.NoticeDialogListener {
     private static final String TAG = "onCreate";
 
     private static final int MEETING_DETAILS = 1;
@@ -111,5 +111,12 @@ public class ListMeetingActivity extends AppCompatActivity {
     public void onShowDetails() {
         Intent intent = new Intent(this, DetailsListMeeting.class);
         startActivityForResult(intent, MEETING_DETAILS);
+    }
+
+    @Override
+    public void onDialogPositiveClick(String date, String salle) {
+        //TODO: Implementer avec l'api
+
+
     }
 }

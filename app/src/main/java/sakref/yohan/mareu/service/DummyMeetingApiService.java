@@ -27,17 +27,11 @@ public class DummyMeetingApiService implements MeetingApiService {
     }
 
     @Override
-    public List<Meeting> getFilteredMeeting(Room room, String date) {
+    public List<Meeting> getFilteredMeeting(String date, String salle) {
 
         //TODO : Create the filter
         //if ()
 
         return null;
-    }
-
-
-    @Override
-    public List<Room> getRoom() {
-        return mRoomList;
     }
 }
