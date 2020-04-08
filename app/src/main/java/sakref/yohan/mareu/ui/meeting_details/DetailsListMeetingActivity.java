@@ -61,7 +61,7 @@ public class DetailsListMeetingActivity extends AppCompatActivity implements Ada
 
     final Calendar myCalendar = Calendar.getInstance();
     private CharSequence emailChip;
-    //List<Chip> Participants = new ArrayList<Chip>();
+
     List<String> Participants = new ArrayList<String>();
 
 
@@ -155,8 +155,17 @@ public class DetailsListMeetingActivity extends AppCompatActivity implements Ada
                 TimePickerDialog mTimePickerDialogue = new TimePickerDialog(DetailsListMeetingActivity.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                        mTimePicker.setText(selectedHour + " : " + selectedMinute);
-                        //TODO : Concatener avec un zero si >10
+
+                        if(selectedHour<10){
+                            if(selectedMinute<10) {
+                                mTimePicker.setText("0" + selectedHour + " : " + "0" + selectedMinute);
+                            }else {mTimePicker.setText("0" + selectedHour + " : " + selectedMinute);}
+                        }else if (selectedMinute<10){
+                            mTimePicker.setText(selectedHour + " : " + "0" + selectedMinute);
+                        }else {mTimePicker.setText(selectedHour + " : " + selectedMinute);}
+
+
+                        //TODO : Concatener avec un zero si >10 -- DONE
                     }
                 }, hour, minute, true);
                 mTimePickerDialogue.setTitle(getString(R.string.Picker_title_hour));

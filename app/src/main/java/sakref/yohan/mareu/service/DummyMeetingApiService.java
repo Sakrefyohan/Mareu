@@ -1,10 +1,13 @@
 package sakref.yohan.mareu.service;
 
+import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import sakref.yohan.mareu.model.Meeting;
 import sakref.yohan.mareu.model.Room;
+import sakref.yohan.mareu.ui.meeting_list.ListMeetingActivity;
 
 public class DummyMeetingApiService implements MeetingApiService {
 
@@ -30,7 +33,15 @@ public class DummyMeetingApiService implements MeetingApiService {
     public List<Meeting> getFilteredMeeting(String date, String salle) {
 
         //TODO : Create the filter
-        //if ()
+        if (!date.isEmpty()){
+
+
+
+            if (salle.isEmpty()){
+
+
+            }
+        }
 
         return null;
     }

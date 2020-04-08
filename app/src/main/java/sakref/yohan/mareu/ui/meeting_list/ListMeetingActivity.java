@@ -53,7 +53,7 @@ public class ListMeetingActivity extends AppCompatActivity implements FilterDial
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mMeetingAdapter = new MeetingAdapter(mMeetingApiService.getMeeting());
         mRecyclerView.setAdapter(mMeetingAdapter);
-     }
+    }
 
     @Override
     protected void onResume() {
@@ -77,8 +77,6 @@ public class ListMeetingActivity extends AppCompatActivity implements FilterDial
             }
         }
     }
-
-    //TODO : TRIE =/= FILTRE
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

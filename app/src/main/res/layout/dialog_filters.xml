@@ -9,40 +9,53 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
+        android:layout_marginTop="20dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         app:layout_constraintVertical_weight="1"
         android:layout_marginBottom="10dp"
         android:hint="@string/filter_hint_date_text"
-        app:counterEnabled="true"
-        app:counterMaxLength="30"
+
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/dialog_filter_date"
+            android:clickable="false"
+            android:focusable="false"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
         </com.google.android.material.textfield.TextInputEditText>
     </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textColor="@android:color/black"
-        android:textSize="20sp"
-        android:textAlignment="center"
-        android:layout_marginBottom="10dp"
-        android:text="Trie par salle"/>
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:text="Trie par salle"
+            android:textColor="@android:color/black"
+            android:textSize="17sp" />
 
 
-    <Spinner
+        <Spinner
+            android:id="@+id/filter_spinner_room"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:dropDownWidth="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="10dp"
+            android:textAlignment="center" />
 
-        android:id="@+id/filter_spinner_room"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textAlignment="center"
-        android:dropDownWidth="match_parent"/>
+    </LinearLayout>
+
 
 </LinearLayout>
 
