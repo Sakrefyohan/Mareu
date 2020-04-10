@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -32,8 +33,10 @@ import sakref.yohan.mareu.R;
 import sakref.yohan.mareu.model.Room;
 import sakref.yohan.mareu.service.DummyMeetingApiService;
 import sakref.yohan.mareu.ui.meeting_details.DetailsListMeetingActivity;
+import sakref.yohan.mareu.ui.meeting_list.ListMeetingActivity;
 
-public class FilterDialogFragment extends DialogFragment{
+public class FilterDialogFragment extends DialogFragment implements AdapterView.OnItemSelectedListener{
+    private static final String TAG = "FilterDialogFragment";
 
     @BindView(R.id.filter_spinner_room)
     Spinner mSpinner;
@@ -41,14 +44,27 @@ public class FilterDialogFragment extends DialogFragment{
     @BindView(R.id.dialog_filter_date)
     TextInputEditText mDatePicker;
 
+    Boolean dateIsClicked = false;
+
     final Calendar myCalendar = Calendar.getInstance();
 
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        String text = parent.getItemAtPosition(position).toString();
+        Log.d(TAG, "onItemSelected() called with: parent = [" + parent + "], view = [" + view + "], position = [" + position + "], id = [" + id + "]" + "Text = [" + text + "]");
+        Toast.makeText(parent.getContext(), text, Toast.LENGTH_SHORT);
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
     public interface NoticeDialogListener {
-        public void onDialogPositiveClick(String date, String salle);
+        public void onDialogPositiveClick(String date, String salle, Boolean dateIsClicked);
     }
 
     NoticeDialogListener listener;
-
 
 
     @Override
@@ -66,26 +82,25 @@ public class FilterDialogFragment extends DialogFragment{
     }
 
 
-
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
-
-
+        Log.d(TAG, "onCreateDialog: OnCreareDialog : dateIsClicked = " + dateIsClicked);
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         // Get the layout inflater
         LayoutInflater inflater = requireActivity().getLayoutInflater();
-
         //TODO : Binder avec butterknife -- DONE
-
         View mView = inflater.inflate(R.layout.dialog_filters, null);
-        //Spinner mSpinner = (Spinner) mView.findViewById(R.id.filter_spinner_room);
         ArrayAdapter<CharSequence> adapterSpinner = ArrayAdapter.createFromResource(getActivity(), R.array.Room, android.R.layout.simple_spinner_item);
         adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         ButterKnife.bind(this, mView);
         mSpinner.setAdapter(adapterSpinner);
+        mSpinner.setOnItemSelectedListener(this);
 
-        DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+
+
+
+        DatePickerDialog.OnDateSetListener datePicker = new DatePickerDialog.OnDateSetListener() {
 
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear,
@@ -96,19 +111,17 @@ public class FilterDialogFragment extends DialogFragment{
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
                 updateLabel();
             }
-
         };
-
         mDatePicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Auto-generated method stub
-                new DatePickerDialog(getActivity(), date, myCalendar
+                dateIsClicked = true;
+                new DatePickerDialog(getActivity(), datePicker, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
-
 
         // Inflate and set the layout for the dialog
         // Pass null as the parent view because its going in the dialog layout
@@ -119,7 +132,12 @@ public class FilterDialogFragment extends DialogFragment{
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         //TODO : implementer la date et la salle de ma vue
-                        //listener.onDialogPositiveClick(date, salle);
+                        String salle = mSpinner.getSelectedItem().toString();
+                        String date = myCalendar.getTime().toString();
+                        Log.d(TAG, "dateIsClicked: @OnClick : dateIsClicked = " + dateIsClicked);
+                        listener.onDialogPositiveClick(date, salle, dateIsClicked);
+                        Log.d(TAG, "onDialogPositiveClick: Click on filter OK : " + myCalendar + " " + salle);
+
                     }
                 })
                 .setNegativeButton("Annuler", new DialogInterface.OnClickListener() {
@@ -131,8 +149,9 @@ public class FilterDialogFragment extends DialogFragment{
     }
 
     private void updateLabel() {
-        String myFormat = "MM/dd/yy"; //In which you need put here
+        String myFormat = "dd/MM/yy"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.FRANCE);
         mDatePicker.setText(sdf.format(myCalendar.getTime()));
+
     }
 }

@@ -16,7 +16,7 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="colorSurface">@android:color/white</item>
         <item name="materialAlertDialogTheme">@style/ThemeOverlay.MaterialComponents.MaterialAlertDialog</item>
-
+        <item name="android:dialogTitle">false</item>
     </style>
 
     <style name="ThirdAppTheme" parent="Theme.MaterialComponents"/>

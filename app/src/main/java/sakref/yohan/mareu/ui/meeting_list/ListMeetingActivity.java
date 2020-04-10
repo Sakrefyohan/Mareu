@@ -16,12 +16,15 @@ import android.view.MenuItem;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import sakref.yohan.mareu.R;
 import sakref.yohan.mareu.di.DI;
 import sakref.yohan.mareu.model.Meeting;
+import sakref.yohan.mareu.service.DummyMeetingApiService;
 import sakref.yohan.mareu.service.MeetingApiService;
 import sakref.yohan.mareu.ui.dialog.FilterDialogFragment;
 import sakref.yohan.mareu.ui.meeting_details.DetailsListMeetingActivity;
@@ -42,6 +45,9 @@ public class ListMeetingActivity extends AppCompatActivity implements FilterDial
     MeetingApiService mMeetingApiService;
 
     MeetingAdapter mMeetingAdapter;
+
+    DummyMeetingApiService mDummyMeetingApiService;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,10 +76,6 @@ public class ListMeetingActivity extends AppCompatActivity implements FilterDial
             if (resultCode == ListMeetingActivity.RESULT_OK) {
                 Meeting meeting = (Meeting) data.getSerializableExtra(CREATE_REUNION);
                 mMeetingApiService.addMeeting(meeting);
-                Log.d(TAG, "onActivityResult: Nom de la room = " + meeting.getRoom());
-                Log.d(TAG, "onActivityResult: Nom de la room = " + meeting.getRoom().getName());
-                Log.d(TAG, "onActivityResult: Couleur de la room = " + meeting.getRoom().getColor());
-                Log.d(TAG, "onActivityResult : " + mMeetingApiService.getMeeting().size());
             }
         }
     }
@@ -104,8 +106,10 @@ public class ListMeetingActivity extends AppCompatActivity implements FilterDial
     }
 
     @Override
-    public void onDialogPositiveClick(String date, String salle) {
+    public void onDialogPositiveClick(String date, String salle, Boolean dateIsClicked) {
         //TODO: Implementer avec l'api
+        mMeetingApiService.getFilteredMeeting(date, salle, dateIsClicked);
+        Log.d(TAG, "onDialogPositiveClick() called with: date = [" + date + "], salle = [" + salle + "], dateIsClicked = [" + dateIsClicked + "]");
 
 
     }

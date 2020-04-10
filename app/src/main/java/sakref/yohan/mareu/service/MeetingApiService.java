@@ -15,6 +15,6 @@ public interface MeetingApiService {
 
     void deleteMeeting (Meeting meeting);
 
-    List<Meeting> getFilteredMeeting(String date, String salle);
+    List<Meeting> getFilteredMeeting(String date, String salle, Boolean dateIsClicked);
 
 }

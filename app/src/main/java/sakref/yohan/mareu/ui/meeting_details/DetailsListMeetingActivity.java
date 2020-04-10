@@ -203,7 +203,7 @@ public class DetailsListMeetingActivity extends AppCompatActivity implements Ada
     }
 
     private void updateLabel() {
-        String myFormat = "MM/dd/yy"; //In which you need put here
+        String myFormat = "dd/MM/yy"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.FRANCE);
         mDatePicker.setText(sdf.format(myCalendar.getTime()));
     }
@@ -244,7 +244,7 @@ public class DetailsListMeetingActivity extends AppCompatActivity implements Ada
             Meeting meeting = new Meeting(meetingSubject, meetingDate, meetingTime, selectedRoom, Participants);
             createReunion.putExtra(CREATE_REUNION, meeting);
             setResult(ListMeetingActivity.RESULT_OK, createReunion);
-            Log.d(TAG, "onCreateReunion() = " + meeting);
+            Log.d(TAG, "onCreateReunion() = " + meeting + "date : [ " + meetingDate + " ] heure : " + meetingTime);
             finish();
         }
     }
