@@ -34,6 +34,7 @@
 
     <!--String to fill the spinner-->
     <string-array name="Room">
+        <item>Aucune Salle</item>
         <item>Hydrogène</item>
         <item>Helium</item>
         <item>Beryllium</item>

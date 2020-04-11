@@ -7,6 +7,7 @@
     <color name="colorWHITE">#FFFFFF</color>
 
     <!--Room Color-->
+    <color name="colorNoRoom">#FFFFFF</color>
     <color name="colorRoomHydrogen">#FF2222</color>
     <color name="colorRoomHelium">#FF6F22</color>
     <color name="colorRoomLithium">#FFA722</color>
@@ -20,6 +21,7 @@
 
 
     <integer-array name="RoomColor">
+        <item>@color/colorNoRoom</item>
         <item>@color/colorRoomHydrogen</item>
         <item>@color/colorRoomHelium</item>
         <item>@color/colorRoomLithium</item>

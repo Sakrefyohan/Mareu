@@ -44,8 +44,6 @@ public class FilterDialogFragment extends DialogFragment implements AdapterView.
     @BindView(R.id.dialog_filter_date)
     TextInputEditText mDatePicker;
 
-    Boolean dateIsClicked = false;
-
     final Calendar myCalendar = Calendar.getInstance();
 
     @Override
@@ -61,7 +59,7 @@ public class FilterDialogFragment extends DialogFragment implements AdapterView.
     }
 
     public interface NoticeDialogListener {
-        public void onDialogPositiveClick(String date, String salle, Boolean dateIsClicked);
+        public void onDialogPositiveClick(String date, String salle);
     }
 
     NoticeDialogListener listener;
@@ -85,11 +83,10 @@ public class FilterDialogFragment extends DialogFragment implements AdapterView.
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
-        Log.d(TAG, "onCreateDialog: OnCreareDialog : dateIsClicked = " + dateIsClicked);
+
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         // Get the layout inflater
         LayoutInflater inflater = requireActivity().getLayoutInflater();
-        //TODO : Binder avec butterknife -- DONE
         View mView = inflater.inflate(R.layout.dialog_filters, null);
         ArrayAdapter<CharSequence> adapterSpinner = ArrayAdapter.createFromResource(getActivity(), R.array.Room, android.R.layout.simple_spinner_item);
         adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -116,7 +113,6 @@ public class FilterDialogFragment extends DialogFragment implements AdapterView.
             @Override
             public void onClick(View v) {
                 // Auto-generated method stub
-                dateIsClicked = true;
                 new DatePickerDialog(getActivity(), datePicker, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
@@ -131,12 +127,11 @@ public class FilterDialogFragment extends DialogFragment implements AdapterView.
                 .setPositiveButton("Filtrer", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-                        //TODO : implementer la date et la salle de ma vue
+
                         String salle = mSpinner.getSelectedItem().toString();
-                        String date = myCalendar.getTime().toString();
-                        Log.d(TAG, "dateIsClicked: @OnClick : dateIsClicked = " + dateIsClicked);
-                        listener.onDialogPositiveClick(date, salle, dateIsClicked);
-                        Log.d(TAG, "onDialogPositiveClick: Click on filter OK : " + myCalendar + " " + salle);
+                        String date = mDatePicker.getText().toString();
+                        listener.onDialogPositiveClick(date, salle);
+                        Log.d(TAG, "onDialogPositiveClick: Click on filter OK : " + date + " " + salle);
 
                     }
                 })

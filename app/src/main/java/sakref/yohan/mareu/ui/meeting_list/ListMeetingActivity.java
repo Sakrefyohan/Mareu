@@ -48,6 +48,8 @@ public class ListMeetingActivity extends AppCompatActivity implements FilterDial
 
     DummyMeetingApiService mDummyMeetingApiService;
 
+    //TODO:Delete with eventbus
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,10 +108,11 @@ public class ListMeetingActivity extends AppCompatActivity implements FilterDial
     }
 
     @Override
-    public void onDialogPositiveClick(String date, String salle, Boolean dateIsClicked) {
-        //TODO: Implementer avec l'api
-        mMeetingApiService.getFilteredMeeting(date, salle, dateIsClicked);
-        Log.d(TAG, "onDialogPositiveClick() called with: date = [" + date + "], salle = [" + salle + "], dateIsClicked = [" + dateIsClicked + "]");
+    public void onDialogPositiveClick(String date, String salle) {
+
+
+        mMeetingAdapter.updateData(mMeetingApiService.getFilteredMeeting(date, salle));
+        Log.d(TAG, "onDialogPositiveClick() called with: date = [" + date + "], salle = [" + salle + "]");
 
 
     }

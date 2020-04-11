@@ -165,7 +165,7 @@ public class DetailsListMeetingActivity extends AppCompatActivity implements Ada
                         }else {mTimePicker.setText(selectedHour + " : " + selectedMinute);}
 
 
-                        //TODO : Concatener avec un zero si >10 -- DONE
+
                     }
                 }, hour, minute, true);
                 mTimePickerDialogue.setTitle(getString(R.string.Picker_title_hour));
@@ -226,7 +226,7 @@ public class DetailsListMeetingActivity extends AppCompatActivity implements Ada
 
 
         String meetingSubject = mSubject.getText().toString();
-        String meetingDate = myCalendar.getTime().toString();
+        String meetingDate = mDatePicker.getText().toString();
         String meetingTime = mTimePicker.getText().toString();
         String roomRoom = mSpinner.getSelectedItem().toString();
         int roomColor = getResources().getIntArray(R.array.RoomColor)[mSpinner.getSelectedItemPosition()];

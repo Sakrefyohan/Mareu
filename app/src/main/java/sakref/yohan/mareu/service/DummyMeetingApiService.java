@@ -13,8 +13,6 @@ import sakref.yohan.mareu.ui.meeting_list.ListMeetingActivity;
 public class DummyMeetingApiService implements MeetingApiService {
     private static final String TAG = "DummyMeetingApiService";
     private List<Meeting> mMeetingList = new ArrayList<>();
-    private List<Meeting> mFilteredMeeting = new ArrayList<>();
-    private List<Room> mRoomList = new ArrayList<>();
 
     @Override
     public List<Meeting> getMeeting() {
@@ -32,19 +30,27 @@ public class DummyMeetingApiService implements MeetingApiService {
     }
 
     @Override
-    public List<Meeting> getFilteredMeeting(String date, String salle, Boolean dateIsClicked) {
+    public List<Meeting> getFilteredMeeting(String date, String salle) {
 
-        //TODO : Create the filter
-    /**
-        Log.d(TAG, "getFilteredMeeting: dateIsClicked [" + dateIsClicked +"]");
-        if (!dateIsClicked){
 
-            for(int i = 0; i < mMeetingList.size(); i++){
-                getMeeting();
+        List<Meeting> mFilteredMeeting = new ArrayList<>();
+
+        for(int i = 0; i < mMeetingList.size(); i++){
+            if (date.equals(mMeetingList.get(i).getDate()) && salle.equals(mMeetingList.get(i).getRoom().getName())){
+                    //Filtre par date & room
+                    mFilteredMeeting.add(mMeetingList.get(i));
+                }else if (date.equals(mMeetingList.get(i).getDate()) && salle.equals("Aucune Salle")){
+                    //Filtre par date
+                    mFilteredMeeting.add(mMeetingList.get(i));
+                }else if (date.equals("") && salle.equals(mMeetingList.get(i).getRoom().getName())){
+                    //Filtre par room
+                    mFilteredMeeting.add(mMeetingList.get(i));
+                }else if (date.equals("") && salle.equals("Aucune Salle")) {
+                    //Reset filtre
+                    mFilteredMeeting.add(mMeetingList.get(i));
+                }
             }
 
-        }
-    */
-        return null;
+        return mFilteredMeeting;
     }
 }

@@ -15,7 +15,6 @@
         app:layout_constraintVertical_weight="1"
         android:layout_marginBottom="10dp"
         android:hint="@string/filter_hint_date_text"
-
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -37,7 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginBottom="10dp"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="20dp"
             android:layout_weight="1"
             android:text="Trie par salle"
             android:textColor="@android:color/black"
