@@ -49,9 +49,6 @@ public class MeetingViewHolder extends RecyclerView.ViewHolder {
         mReunionName.setText(meeting.getSubject() +"..."+ " - " + meeting.getTime() + " - " + meeting.getRoom().getName());
         String delim= " ; ";
         String listParticipant = TextUtils.join(delim, meeting.getParticipants());
-        Log.d(TAG, "bind: meeting.getParticipants = " + meeting.getParticipants().size());
-        Log.d(TAG, "bind: meeting.getParticipants = " + listParticipant);
-        Log.d(TAG, "bind: meeting.getParticipants = " + meeting.getParticipants().toString());
         mReunionParticipants.setText(listParticipant);
         mRoomColor.setBackgroundTintList(ColorStateList.valueOf(meeting.getRoom().getColor()));
 

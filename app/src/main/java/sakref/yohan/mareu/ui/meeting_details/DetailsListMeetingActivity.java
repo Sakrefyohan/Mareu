@@ -62,7 +62,7 @@ public class DetailsListMeetingActivity extends AppCompatActivity implements Ada
     final Calendar myCalendar = Calendar.getInstance();
     private CharSequence emailChip;
 
-    List<String> Participants = new ArrayList<String>();
+    List<String> Participants = new ArrayList<>();
 
 
     @Override
@@ -239,7 +239,9 @@ public class DetailsListMeetingActivity extends AppCompatActivity implements Ada
             Toast.makeText(DetailsListMeetingActivity.this, "Veuillez definir une heure de réunion", Toast.LENGTH_SHORT).show();
         } else if (Participants.isEmpty()) {
             Toast.makeText(DetailsListMeetingActivity.this, "Veuillez remplir des participants", Toast.LENGTH_SHORT).show();
-        } else {
+        }else if (roomRoom.equals(getString(R.string.room_NoRoom))) {
+            Toast.makeText(DetailsListMeetingActivity.this, "Veuillez choisir une salle", Toast.LENGTH_SHORT).show();
+        }else {
             Room selectedRoom = new Room(roomRoom, roomColor);
             Meeting meeting = new Meeting(meetingSubject, meetingDate, meetingTime, selectedRoom, Participants);
             createReunion.putExtra(CREATE_REUNION, meeting);

@@ -9,16 +9,23 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import sakref.yohan.mareu.R;
+import sakref.yohan.mareu.events.DeleteMeetingEvent;
 import sakref.yohan.mareu.model.Meeting;
+import sakref.yohan.mareu.service.MeetingApiService;
 
 public class MeetingAdapter extends RecyclerView.Adapter<MeetingViewHolder> {
     private static final String TAG = "MeetingAdapter";
 
     private List<Meeting> mMeetingList;
+
+    MeetingApiService mMeetingApiService;
 
     public MeetingAdapter(List<Meeting> meetingList){
         mMeetingList = meetingList;
@@ -52,8 +59,11 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingViewHolder> {
             @Override
             public void onClick(View v) {
                 removeItem(position);
+
             }
         });
+
+
 
     }
 

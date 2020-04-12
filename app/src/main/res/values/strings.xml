@@ -30,6 +30,7 @@
     <string name="filtrer_par_salle">Filtrer par Salle</string>
     <string name="Picker_title_hour">Selectionnez L\'heure</string>
     <string name="filter_hint_date_text">Cliquer pour choisir une date</string>
+    <string name="room_NoRoom">Aucune Salle</string>
 
 
     <!--String to fill the spinner-->

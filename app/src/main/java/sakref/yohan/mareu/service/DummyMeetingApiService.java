@@ -6,6 +6,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import sakref.yohan.mareu.R;
 import sakref.yohan.mareu.model.Meeting;
 import sakref.yohan.mareu.model.Room;
 import sakref.yohan.mareu.ui.meeting_list.ListMeetingActivity;
@@ -39,7 +40,7 @@ public class DummyMeetingApiService implements MeetingApiService {
             if (date.equals(mMeetingList.get(i).getDate()) && salle.equals(mMeetingList.get(i).getRoom().getName())){
                     //Filtre par date & room
                     mFilteredMeeting.add(mMeetingList.get(i));
-                }else if (date.equals(mMeetingList.get(i).getDate()) && salle.equals("Aucune Salle")){
+                }else if (date.equals(mMeetingList.get(i).getDate()) && salle.equals(R.string.room_NoRoom)){
                     //Filtre par date
                     mFilteredMeeting.add(mMeetingList.get(i));
                 }else if (date.equals("") && salle.equals(mMeetingList.get(i).getRoom().getName())){

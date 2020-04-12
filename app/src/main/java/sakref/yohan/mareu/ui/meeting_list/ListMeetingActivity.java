@@ -16,6 +16,8 @@ import android.view.MenuItem;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import org.greenrobot.eventbus.Subscribe;
+
 import java.util.List;
 
 import butterknife.BindView;
@@ -109,11 +111,8 @@ public class ListMeetingActivity extends AppCompatActivity implements FilterDial
 
     @Override
     public void onDialogPositiveClick(String date, String salle) {
-
-
         mMeetingAdapter.updateData(mMeetingApiService.getFilteredMeeting(date, salle));
         Log.d(TAG, "onDialogPositiveClick() called with: date = [" + date + "], salle = [" + salle + "]");
-
-
     }
+
 }
