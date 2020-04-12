@@ -70,8 +70,6 @@ public class MeetingServiceTest{
         participants.add("c@a.fr");
         participants.add("test@test.fr");
 
-        List<Meeting> meetings = meetingApiService.getMeeting();
-
         Meeting meeting = new Meeting("Ceci est un test de réunion", "02/03/2021","10:53" ,roomBeryllium,participants);
         Meeting meeting1 = new Meeting("Deuxieme Reunion", "02/03/2020","11:12" ,roomHydrogene,participants);
         Meeting meeting2 = new Meeting("troisieme Reunion", "04/04/2020","12:20" ,roomHelium,participants);
@@ -82,10 +80,6 @@ public class MeetingServiceTest{
         meetingApiService.addMeeting(meeting2);
         meetingApiService.addMeeting(meeting3);
         meetingApiService.addMeeting(meeting4);
-
-        List<Meeting> filteredMeeting =  new ArrayList<>();
-
-
 
         meetingApiService.getMeeting();
 

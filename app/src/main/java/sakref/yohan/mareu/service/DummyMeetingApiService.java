@@ -40,7 +40,7 @@ public class DummyMeetingApiService implements MeetingApiService {
             if (date.equals(mMeetingList.get(i).getDate()) && salle.equals(mMeetingList.get(i).getRoom().getName())){
                     //Filtre par date & room
                     mFilteredMeeting.add(mMeetingList.get(i));
-                }else if (date.equals(mMeetingList.get(i).getDate()) && salle.equals(R.string.room_NoRoom)){
+                }else if (date.equals(mMeetingList.get(i).getDate()) && salle.equals("Aucune Salle")){
                     //Filtre par date
                     mFilteredMeeting.add(mMeetingList.get(i));
                 }else if (date.equals("") && salle.equals(mMeetingList.get(i).getRoom().getName())){

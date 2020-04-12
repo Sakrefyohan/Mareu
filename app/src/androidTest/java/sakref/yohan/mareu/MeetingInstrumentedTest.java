@@ -1,4 +1,4 @@
-package sakref.yohan.mareu.ui;
+package sakref.yohan.mareu;
 
 
 import android.app.Activity;
@@ -24,6 +24,7 @@ import org.junit.runner.RunWith;
 import sakref.yohan.mareu.R;
 import sakref.yohan.mareu.di.DI;
 import sakref.yohan.mareu.service.MeetingApiService;
+import sakref.yohan.mareu.ui.meeting_list.ListMeetingActivity;
 
 import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
@@ -47,49 +48,5 @@ import static org.junit.Assert.assertEquals;
 @RunWith(AndroidJUnit4.class)
 public class MeetingInstrumentedTest extends Activity {
 
-    private MeetingApiService meetingApiService;
-
-    @Before
-    public void setup(){meetingApiService = DI.getNewInstanceApiService();}
-
-    @Rule
-    public ActivityTestRule<MeetingInstrumentedTest> mActivityTestRule = new ActivityTestRule<>(MeetingInstrumentedTest.class);
-
-    @Test
-    public void DisplayDetailsActivityWithoutCreatingMeeting() {
-        ViewInteraction floatingActionButton = onView(
-                allOf(withId(R.id.activity_meeting_list_add_meeting),isDisplayed()));
-        floatingActionButton.perform(click());
-
-        ViewInteraction linearLayout = onView(
-                allOf(childAtPosition(
-                        IsInstanceOf.<View>instanceOf(android.widget.FrameLayout.class),
-                        0),
-                        isDisplayed()));
-        linearLayout.check(matches(isDisplayed()));
-    }
-
-
-
-
-
-    private static Matcher<View> childAtPosition(
-            final Matcher<View> parentMatcher, final int position) {
-
-        return new TypeSafeMatcher<View>() {
-            @Override
-            public void describeTo(Description description) {
-                description.appendText("Child at position " + position + " in parent ");
-                parentMatcher.describeTo(description);
-            }
-
-            @Override
-            public boolean matchesSafely(View view) {
-                ViewParent parent = view.getParent();
-                return parent instanceof ViewGroup && parentMatcher.matches(parent)
-                        && view.equals(((ViewGroup) parent).getChildAt(position));
-            }
-        };
-    }
 
 }
