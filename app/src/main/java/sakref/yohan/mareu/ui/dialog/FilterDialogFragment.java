@@ -94,9 +94,6 @@ public class FilterDialogFragment extends DialogFragment implements AdapterView.
         mSpinner.setAdapter(adapterSpinner);
         mSpinner.setOnItemSelectedListener(this);
 
-
-
-
         DatePickerDialog.OnDateSetListener datePicker = new DatePickerDialog.OnDateSetListener() {
 
             @Override

@@ -70,10 +70,7 @@ public class DetailsListMeetingActivity extends AppCompatActivity implements Ada
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meeting_details);
         ButterKnife.bind(this);
-        setTitle("");
-
-
-
+        setTitle("Nouvelle Reunion");
         /*
          * Code for the spinner
          * Here we fill the spinner with the list we have created on String.xml
